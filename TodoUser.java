@@ -6,11 +6,14 @@ public class TodoUser {
         System.out.println("to login, press 1");
         System.out.println("to add user, press 2");
         System.out.println("to exit, press 0\n");
+        
     }
 
-    public static void toprintMenu(){
+    public static void toprintMenu(UserDAO user){
         System.out.println("\n***login page***");
         System.out.println("to logout press 1");
+        if(user.getType().equals("0"))
+            System.out.println("to edit users press 2");
         // 다른 메뉴 추가
         System.out.println("to exit, press 0\n");
     }
@@ -59,11 +62,15 @@ public class TodoUser {
             }
     }
 
-    public static void toLogoutUser(UserDAO user, Scanner sc){
+    public static int toLogoutUser(UserDAO user, Scanner sc){
         System.out.println("logout user? (yes = 1, no = 0)");
         int res = sc.nextInt();
-        if(res==1) user.logout();
+        if(res==1) {
+            user.logout();
+            return 1;
+        }
         else System.out.println("logout failed");
+        return 0;
     }
 
     public static boolean IsAllChar(String password){

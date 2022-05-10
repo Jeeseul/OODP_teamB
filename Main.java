@@ -29,13 +29,19 @@ public class Main{
 
         //user page    
         while(userexit==1 && curuser != null) { //대상 유저가 정해졌을때 (로그인됨)
-            TodoUser.toprintMenu();
+            TodoUser.toprintMenu(curuser);
             input = sc.nextInt();
             switch (input){
                 case 0 : userexit = 0;
                          break;
-                case 1 : TodoUser.toLogoutUser(curuser, sc);
+                case 1 : if(TodoUser.toLogoutUser(curuser, sc) == 1){
                          userexit = 0;
+                         break;
+                         }
+                case 2 : if(curuser.getType().equals("0")){
+                            System.out.println("\n\n***Show current userlist***\n");
+                            System.out.println(UserList.toString());
+                          }
                          break;
                 //case n : 다른 활동
             }
