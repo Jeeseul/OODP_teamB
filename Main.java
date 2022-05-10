@@ -38,7 +38,7 @@ public class Main{
                 //case n : 다른 활동
             }
         }
-
+        sc.close();
         System.out.println("System exit! bye!");
     }
 }

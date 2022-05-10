@@ -22,6 +22,7 @@ public class TodoUser {
             String id = sc.next();
             System.out.print("user password : ");
             String password = sc.next();
+            sc.close();
             for(UserDAO user : u.getList()){
                 if (id.equals(user.getID()) && password.equals(user.getPassword()) ){
                     user.login();
@@ -46,6 +47,7 @@ public class TodoUser {
             UserDAO user = new UserDAO(name, id, password, type);
             System.out.println(user.toString());
             u.addUser(user);
+            sc.close();
     }
 
     public static void toLogoutUser(UserDAO user){
@@ -54,6 +56,6 @@ public class TodoUser {
         int res = sc.nextInt();
         if(res==1) user.logout();
         else System.out.println("logout failed");
-        
+        sc.close();
     }
 }

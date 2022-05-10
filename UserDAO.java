@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class UserDAO{
     private String name;
     private String ID;
