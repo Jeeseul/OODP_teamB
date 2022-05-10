@@ -1,52 +1,89 @@
 import java.util.ArrayList;
 
-public class UserListDAO{
-    private static ArrayList<UserDAO> UserList;
-    
-    public UserListDAO(){
-        UserList = new ArrayList<UserDAO>();
+public class UserListDAO extends UserDAO{
+    // 복수 개의 UserDAO를 가리킴
+    private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
+
+    // override methods, list all
+    public String getName(){
+        String res = "";
+        for( UserDAO user : UserList)
+            res += user.getName() + "\t";
+        res += "\n";
+        return res;
+    }
+    public String getID(){
+        String res = "";
+        for( UserDAO user : UserList)
+            res += user.getID() + "\t";
+        res += "\n";
+        return res;
+    }
+    public String getPassword(){
+        String res = "";
+        for( UserDAO user : UserList)
+            res += user.getPassword() + "\t";
+        res += "\n";
+        return res;
+    }
+    public String getType(){
+        String res = "";
+        for( UserDAO user : UserList)
+            res += user.getType() + "\t";
+        res += "\n";
+        return res;
+    }
+    public String getLogincheck(){
+        String res = "";
+        for( UserDAO user : UserList)
+            res += user.getLogincheck() + "\t";
+        res += "\n";
+        return res;
+    }
+    public String toString(){
+        String res = "";
+        res += getName();
+        res += getID();
+        res += getPassword();
+        res += getType();
+        res += getLogincheck();
+        return res;
     }
 
-    public int addUser(UserDAO user){
+    // User을 UserList에 추가
+    public void addUser(UserDAO user){
         UserList.add(user);
-        return 1; //success
     }
-
-    public int updateUser(UserDAO user, UserDAO updated){
+    // User을 수정
+    public void updateUser(UserDAO user, UserDAO updated){
         int index = UserList.indexOf(user);
         UserList.remove(index);
         UserList.add(updated);
-        return 1; //success
     }
-
-    public int deleteUser(UserDAO user){
+    // User을 UserList에서 제거
+    public void deleteUser(UserDAO user){
         UserList.remove(user);
-        return 1; //success
     }
 
     public int indexOf(UserDAO user){
         return UserList.indexOf(user);
     }
-
     public int size(){
         return UserList.size();
     }
-
-    public ArrayList<UserDAO> getList(){
-        return new ArrayList<UserDAO>(UserList);
-    }
-
-    public void listAll(){
-        System.out.println("**list all ***");
-        for(UserDAO user : UserList){
-            System.out.println(user.toString());
-        }
-    }
-
     public Boolean usDuplicate(String id){
         for(UserDAO user : UserList){
             if (id.equals(user.getID()) ) return true;
         }
         return false;
+    }
+    public ArrayList<UserDAO> getList(){
+        return UserList;
+    }
+    public int login(){
+        return 0;
+    }
+    public int logout(){
+        return 0;
     }
 }

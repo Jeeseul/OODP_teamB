@@ -49,12 +49,14 @@ public class TodoUser {
             }
             System.out.print("user type (admin 0, normal 1) : ");
             int type = sc.nextInt();
-            UserDAO user = new UserDAO(name, id, password, type);
-            if(u.addUser(user)>0){
-                System.out.println("Success add user!");
-                System.out.println(user.toString() + "\n");
+            if(type==1) {
+                NormalUser user = new NormalUser(name, id, password, type);
+                u.addUser(user);
             }
-            else System.out.println("Failed add user!");
+            else {
+                AdminUser user = new AdminUser(name, id, password, type);
+                u.addUser(user);
+            }
     }
 
     public static void toLogoutUser(UserDAO user, Scanner sc){
