@@ -18,7 +18,7 @@ public class TodoUser {
         System.out.println("to exit, press 0\n");
     }
 
-    public static UserDAO toLoginUser(UserListDAO u, Scanner sc){
+    public static UserDAO toLoginUser(TeamDAO u, Scanner sc){
         System.out.println("*** login user ***");
             System.out.print("user id : ");
             String id = sc.next();
@@ -34,7 +34,7 @@ public class TodoUser {
             return null;
     }
 
-    public static void toAddUser(UserListDAO u, Scanner sc){
+    public static void toAddUser(TeamDAO u, Scanner sc){
         System.out.println("*** add user ***");
             System.out.print("user id : ");
             String id = sc.next();

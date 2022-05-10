@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
-public class UserListDAO extends UserDAO{
+public class TeamDAO extends UserDAO{
+    private String teamName;
     // 복수 개의 UserDAO를 가리킴
     private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
 

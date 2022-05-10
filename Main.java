@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        UserListDAO UserList = new UserListDAO();
+        TeamDAO UserList = new TeamDAO();
         int input;
         UserDAO curuser = null;
         int loginexit = 1;
