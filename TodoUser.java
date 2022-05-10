@@ -15,14 +15,12 @@ public class TodoUser {
         System.out.println("to exit, press 0\n");
     }
 
-    public static UserDAO toLoginUser(UserListDAO u){
-        Scanner sc = new Scanner(System.in);
+    public static UserDAO toLoginUser(UserListDAO u, Scanner sc){
         System.out.println("*** login user ***");
             System.out.print("user id : ");
             String id = sc.next();
             System.out.print("user password : ");
             String password = sc.next();
-            sc.close();
             for(UserDAO user : u.getList()){
                 if (id.equals(user.getID()) && password.equals(user.getPassword()) ){
                     user.login();
@@ -33,29 +31,48 @@ public class TodoUser {
             return null;
     }
 
-    public static void toAddUser(UserListDAO u){
-        Scanner sc = new Scanner(System.in);
+    public static void toAddUser(UserListDAO u, Scanner sc){
         System.out.println("*** add user ***");
             System.out.print("user id : ");
             String id = sc.next();
             System.out.print("user name : ");
             String name = sc.next();
-            System.out.print("user password : ");
-            String password = sc.next();
+            String password;
+            while(true){
+                System.out.print("user password : ");
+                password = sc.next();
+                if(password.length() < 8)
+                    System.out.println("password's length should be longer than 7!");
+                else if(!IsAllChar(password))
+                    System.out.println("password should have all number, capital and non-capital");
+                else break;
+            }
             System.out.print("user type (admin 0, normal 1) : ");
             int type = sc.nextInt();
             UserDAO user = new UserDAO(name, id, password, type);
-            System.out.println(user.toString());
-            u.addUser(user);
-            sc.close();
+            if(u.addUser(user)>0){
+                System.out.println("Success add user!");
+                System.out.println(user.toString() + "\n");
+            }
+            else System.out.println("Failed add user!");
     }
 
-    public static void toLogoutUser(UserDAO user){
-        Scanner sc = new Scanner(System.in);
+    public static void toLogoutUser(UserDAO user, Scanner sc){
         System.out.println("logout user? (yes = 1, no = 0)");
         int res = sc.nextInt();
         if(res==1) user.logout();
         else System.out.println("logout failed");
-        sc.close();
+    }
+
+    public static boolean IsAllChar(String password){
+        int[] havetype = {0, 0, 0}; //number(0), capital(1), non-capital(2)
+        for(int i=0; i<password.length(); i++){
+            if(password.charAt(i) >= '0' && password.charAt(i) <= '9') havetype[0] = 1;
+            else if(password.charAt(i) >= 'A' && password.charAt(i) <= 'Z') havetype[1] = 1;
+            else if(password.charAt(i) >= 'a' && password.charAt(i) <= 'z') havetype[2] = 1;
+        }
+        for(int i=0; i<3; i++)
+            if(havetype[i] == 0) return false;
+        return true;
     }
 }

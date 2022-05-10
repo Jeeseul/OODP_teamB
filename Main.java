@@ -17,10 +17,12 @@ public class Main{
                 case 0 : loginexit=0;
                          userexit=0;
                          break;
-                case 1 : curuser = TodoUser.toLoginUser(UserList);
+                case 1 : curuser = TodoUser.toLoginUser(UserList, sc);
                          loginexit=0;
                          break; //login
-                case 2 : TodoUser.toAddUser(UserList); //adduser
+                case 2 : TodoUser.toAddUser(UserList, sc); //adduser
+                         break;
+                default : System.out.println("Non-correct answer!");
                          break;
             }
         }
@@ -32,7 +34,7 @@ public class Main{
             switch (input){
                 case 0 : userexit = 0;
                          break;
-                case 1 : TodoUser.toLogoutUser(curuser);
+                case 1 : TodoUser.toLogoutUser(curuser, sc);
                          userexit = 0;
                          break;
                 //case n : 다른 활동

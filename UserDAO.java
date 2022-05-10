@@ -56,7 +56,7 @@ public class UserDAO{
     }
 
     public String toString(){
-        return "id : " + this.ID + " name : " + this.name
-            + " password : " + this.password + " type : " + this.type;
+        return "id : " + this.ID + ", name : " + this.name
+            + ", password : " + this.password + ", type : " + this.type;
     }
 }
