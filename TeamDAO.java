@@ -30,14 +30,20 @@ public class TeamDAO extends UserDAO{
     public String getType(){
         String res = "";
         for( UserDAO user : UserList)
-            res += user.getType() + "\t";
+            if(user.getType().equals("0"))
+                res += "admin" + "\t\t";
+            else
+                res += "normal" + "\t\t";
         res += "\n";
         return res;
     }
     public String getLogincheck(){
         String res = "";
         for( UserDAO user : UserList)
-            res += user.getLogincheck() + "\t";
+            if(user.getLogincheck().equals("0"))
+                res += "logout" + "\t\t";
+            else
+                res += "login" + "\t\t";
         res += "\n";
         return res;
     }
