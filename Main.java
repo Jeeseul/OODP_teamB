@@ -39,8 +39,7 @@ public class Main{
                          break;
                          }
                 case 2 : if(curuser.getType().equals("0")){
-                            System.out.println("\n\n***Show current userlist***\n");
-                            System.out.println(UserList.toString());
+                            TodoUser.toEditUser(UserList, sc);
                           }
                          break;
                 //case n : 다른 활동

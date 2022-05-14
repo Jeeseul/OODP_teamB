@@ -84,4 +84,19 @@ public class TodoUser {
             if(havetype[i] == 0) return false;
         return true;
     }
+
+    public static void toEditUser(TeamDAO userlist, Scanner sc){
+        System.out.println("\n\n***Show current userlist***\n");
+        System.out.println(userlist.toString());
+        System.out.println("choose user id to make admin\n");
+        String res = sc.next();
+        for(UserDAO user : userlist.getList()){
+            if (res.equals(user.getID())){
+                user.setType(0);
+                System.out.println(res + " id is now admin\n");
+            }
+            else 
+                System.out.println(res + " id is not exist\n");
+        }
+    }
 }

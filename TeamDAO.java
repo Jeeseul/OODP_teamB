@@ -93,4 +93,5 @@ public class TeamDAO extends UserDAO{
     public int logout(){
         return 0;
     }
+   public void setType(int type){}
 }
