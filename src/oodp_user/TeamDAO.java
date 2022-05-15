@@ -1,27 +1,10 @@
-package oodp_user;
-
 import java.util.ArrayList;
 
 public class TeamDAO extends UserDAO{
     private String teamName;
-    // º¹¼ö °³ÀÇ UserDAO¸¦ °¡¸®Å´
+    // ë³µìˆ˜ ê°œì˜ UserDAOë¥¼ ê°€ë¦¬í‚´
     private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
 
-    public TeamDAO() {
-    	this.setTeamName("no named team");
-    }
-    public TeamDAO(String name) {
-    	this.setTeamName(name);
-    }
-    
-    //team name
-    public String getTeamName() {
-		return teamName;
-	}
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
-    
     // override methods, list all
     public String getName(){
         String res = "";
@@ -47,19 +30,23 @@ public class TeamDAO extends UserDAO{
     public String getType(){
         String res = "";
         for( UserDAO user : UserList)
-            res += user.getType() + "\t";
+            if(user.getType().equals("0"))
+                res += "admin" + "\t\t";
+            else
+                res += "normal" + "\t\t";
         res += "\n";
         return res;
     }
     public String getLogincheck(){
         String res = "";
         for( UserDAO user : UserList)
-            res += user.getLogincheck() + "\t";
+            if(user.getLogincheck().equals("0"))
+                res += "logout" + "\t\t";
+            else
+                res += "login" + "\t\t";
         res += "\n";
         return res;
     }
-    
-	//toString
     public String toString(){
         String res = "";
         res += getName();
@@ -70,17 +57,17 @@ public class TeamDAO extends UserDAO{
         return res;
     }
 
-    // UserÀ» UserList¿¡ Ãß°¡
+    // Userì„ UserListì— ì¶”ê°€
     public void addUser(UserDAO user){
         UserList.add(user);
     }
-    // UserÀ» ¼öÁ¤
+    // Userì„ ìˆ˜ì •
     public void updateUser(UserDAO user, UserDAO updated){
         int index = UserList.indexOf(user);
         UserList.remove(index);
         UserList.add(updated);
     }
-    // UserÀ» UserList¿¡¼­ Á¦°Å
+    // Userì„ UserListì—ì„œ ì œê±°
     public void deleteUser(UserDAO user){
         UserList.remove(user);
     }
@@ -106,4 +93,8 @@ public class TeamDAO extends UserDAO{
     public int logout(){
         return 0;
     }
+   public void setType(int type){}
+   public ArrayList<String> getTasks(){
+       return null;
+   }
 }

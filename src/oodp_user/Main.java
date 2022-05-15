@@ -1,4 +1,4 @@
-package oodp_user;
+//package oodp_user;
 import java.util.Scanner;
 
 public class Main{
@@ -35,10 +35,9 @@ public class Main{
             switch (input){
                 case 0 : userexit = 0;
                          break;
-                case 1 : if(TodoUser.toLogoutUser(curuser, sc) == 1){
+                case 1 : TodoUser.toLogoutUser(curuser, sc);
                          userexit = 0;
                          break;
-                         }
                 case 2 : if(curuser.getType().equals("0")){
                             System.out.println("\n\n***Show current userlist***\n");
                             System.out.println(UserList.toString());
