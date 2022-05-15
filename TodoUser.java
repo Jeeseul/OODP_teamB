@@ -14,7 +14,7 @@ public class TodoUser {
         System.out.println("to logout press 1");
         if(user.getType().equals("0"))
             System.out.println("to edit users press 2");
-        // 다른 메뉴 추가
+        System.out.println("to meet record press 3");
         System.out.println("to exit, press 0\n");
     }
 
