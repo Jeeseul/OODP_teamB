@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import meetrecord.recordMain;
 
 public class Main{
     public static void main(String[] args){
@@ -42,7 +43,8 @@ public class Main{
                             TodoUser.toEditUser(UserList, sc);
                           }
                          break;
-                //case n : 다른 활동
+                case 3 : recordMain.start();
+                        break;
             }
         }
         sc.close();

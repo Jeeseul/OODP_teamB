@@ -1,18 +1,19 @@
+package meetrecord;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class TodoMain {
+public class recordMain {
     public static void start() {
 	
 		Scanner sc = new Scanner(System.in);
-		meetList l = new meetList();
+		recordList l = new recordList();
 		boolean isList = false;
 		boolean quit = false;
-		TodoMeet.loadList(l, "todolist.txt");
-		TodoMeet.displaymenu();
+		Todorecord.loadList(l, "todolist.txt");
+		Todorecord.displaymenu();
 		
 		do {
-			TodoMeet.prompt();
+			Todorecord.prompt();
 			//사용법을 매번 표현하지 않고 hel명령어 입력 시에 나타나도록 수정
 			//menu.propmpt()추가
 			isList = false;
@@ -22,38 +23,38 @@ public class TodoMain {
 				StringTokenizer st = new StringTokenizer(choice, " ");
 				String find_cate = st.nextToken();
 				String str = st.nextToken();
-				TodoMeet.find_cate(l, str);
+				Todorecord.find_cate(l, str);
 			}
 			else if(choice.contains("find")) {
 				StringTokenizer st = new StringTokenizer(choice, " ");
 				String find = st.nextToken();
 				String str = st.nextToken();
-				TodoMeet.find(l, str);
+				Todorecord.find(l, str);
 			}
 			else {
 				switch (choice) {
 				
 				case "help":
-                TodoMeet.displaymenu();
+                Todorecord.displaymenu();
 					break;
 				case "add":
-                TodoMeet.createItem(l);
+                Todorecord.createItem(l);
 					break;
 				
 				case "del":
-                TodoMeet.deleteItem(l);
+                Todorecord.deleteItem(l);
 					break;
 					
 				case "edit":
-                TodoMeet.updateItem(l);
+                Todorecord.updateItem(l);
 					break;
 					
 				case "ls":
-                TodoMeet.listAll(l);
+                Todorecord.listAll(l);
 					break;
 					
 				case "ls_cate":
-                TodoMeet.listCate(l);
+                Todorecord.listCate(l);
 					break;
 	
 				case "ls_name_asc":
@@ -79,7 +80,7 @@ public class TodoMain {
 					break;
 	
 				case "exit":
-                TodoMeet.saveList(l, "todolist.txt");
+                Todorecord.saveList(l, "todolist.txt");
 					quit = true;
 					break;
 					

@@ -1,3 +1,4 @@
+package meetrecord;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,7 +7,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.*;
 
-public class TodoMeet {
+public class Todorecord {
     public static void displaymenu()
     {
         System.out.println();
@@ -30,7 +31,7 @@ public class TodoMeet {
         System.out.print("Command > ");
     }
 
-    public static void createItem(meetList list) {
+    public static void createItem(recordList list) {
 		
 		String title, desc, category, due_date;
 		Scanner sc = new Scanner(System.in);
@@ -54,11 +55,11 @@ public class TodoMeet {
 		System.out.print("due_date : ");
 		due_date = sc.nextLine();
 		
-		meetDAO t = new meetDAO(title, desc, category, due_date);
+		recordDAO t = new recordDAO(title, desc, category, due_date);
 		list.addItem(t);
 	}
 
-	public static void deleteItem(meetList l) {
+	public static void deleteItem(recordList l) {
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -80,7 +81,7 @@ public class TodoMeet {
 	}
 
 
-	public static void updateItem(meetList l) {
+	public static void updateItem(recordList l) {
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -111,29 +112,29 @@ public class TodoMeet {
 		String new_due_date = sc.nextLine().trim();
 		
 		l.deleteItem(l.indexOf(num));
-		meetDAO t = new meetDAO(new_title, new_description, new_category, new_due_date);
+		recordDAO t = new recordDAO(new_title, new_description, new_category, new_due_date);
 		l.addItem(t);
 		System.out.println("item updated");
 
 	}
 
-	public static void listAll(meetList l) {
+	public static void listAll(recordList l) {
 		int i=0;
 		System.out.print("** list, " + l.size() + " ***");
-		for (meetDAO item : l.getList()) {
+		for (recordDAO item : l.getList()) {
 			i++;
 			System.out.println("\n " + i + "] " + item.getTitle() + "\n    " + item.getDesc()
 					+ "\n    " + item.getCurrent_date()+ "\n    " + item.getCategory()+ "\n    " + item.getDue_date());
 		}
 	}
 	
-	public static void saveList(meetList l, String filename) {
+	public static void saveList(recordList l, String filename) {
 		//filewriter이용
 		try {
 			Writer w = new FileWriter(filename);
 			
-			for (meetDAO item : l.getList()) {
-				meetDAO i = new meetDAO(item.getTitle(), item.getDesc(), item.getCurrent_date(), item.getCategory(), item.getDue_date());
+			for (recordDAO item : l.getList()) {
+				recordDAO i = new recordDAO(item.getTitle(), item.getDesc(), item.getCurrent_date(), item.getCategory(), item.getDue_date());
 				w.write(i.toSaveString());
 			}
 			w.close();
@@ -146,7 +147,7 @@ public class TodoMeet {
 		}
 	}
 	
-	public static void loadList(meetList l, String filename) {
+	public static void loadList(recordList l, String filename) {
 		//bufferedreader, filereader, string tokenize
 		try {
 			BufferedReader  br = new BufferedReader(new FileReader(filename));
@@ -161,7 +162,7 @@ public class TodoMeet {
 				String category = st.nextToken();
 				String due_date = st.nextToken();
 				
-				meetDAO i = new meetDAO (title, desc, date, category, due_date);
+				recordDAO i = new recordDAO (title, desc, date, category, due_date);
 				l.addItem(i);
 			}
 			System.out.println("\n sucess loading data");
@@ -173,10 +174,10 @@ public class TodoMeet {
 		}
 	}
 
-	public static void find(meetList l, String str) {
+	public static void find(recordList l, String str) {
 		int i=0;
 		int count = 0;
-		for (meetDAO item : l.getList()) {
+		for (recordDAO item : l.getList()) {
 			i++;
 			if(item.getTitle().contains(str) || item.getDesc().contains(str)) {
 				System.out.println("\n " + i + "] " + item.getTitle() + "\n    " + item.getDesc()
@@ -187,10 +188,10 @@ public class TodoMeet {
 		System.out.println("find " + count + "item");
 	}
 
-	public static void find_cate(meetList l, String str) {
+	public static void find_cate(recordList l, String str) {
 		int i=0;
 		int count = 0;
-		for (meetDAO item : l.getList()) {
+		for (recordDAO item : l.getList()) {
 			i++;
 			if(item.getCategory().contains(str)) {
 				System.out.println("\n " + i + "] " + item.getTitle() + "\n    " + item.getDesc()
@@ -201,9 +202,9 @@ public class TodoMeet {
 		System.out.println("find " + count + "item");
 	}
 
-	public static void listCate(meetList l) {
+	public static void listCate(recordList l) {
 		HashSet<String> cate = new HashSet<String>();//HashSet생성
-		for (meetDAO item : l.getList()) {
+		for (recordDAO item : l.getList()) {
 			cate.add(item.getCategory());
 		}
 		System.out.println(cate);
