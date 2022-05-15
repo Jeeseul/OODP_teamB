@@ -123,7 +123,10 @@ public class AppRunner
                 	case 3: //meeting room
                 		meetingroomRun.run();
                 		break;
-                	case 4: //logout
+                    case 4: //meeting record
+                        recirdMain.start();
+                        break;
+                	case 5: //logout
                 		TodoUser.toLogoutUser(cursor, sc);
                     	if(cursor.getLogincheck().equals("0")) cursor = null;
                         appExit = true;
