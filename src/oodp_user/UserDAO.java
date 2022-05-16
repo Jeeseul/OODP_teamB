@@ -7,6 +7,7 @@ public abstract class UserDAO {
     abstract public String getPassword();
     abstract public String getType();
     abstract public String getLogincheck();
+    
     abstract public ArrayList<String> getTasks();
 
     abstract public int login();
