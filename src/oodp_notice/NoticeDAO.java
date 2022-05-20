@@ -2,7 +2,7 @@ package oodp_notice;
 
 import java.util.TreeMap;
 
-import oodp_notice.NoticeObserver;
+import oodp_user.NoticeObserver;
 
 import java.util.ArrayList;
 /*
