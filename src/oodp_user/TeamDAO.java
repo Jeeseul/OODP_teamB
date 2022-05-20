@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class TeamDAO extends UserDAO{
+public class TeamDAO extends UserDAO implements NoticeObserver {
     private String teamName;
     // 복수 개의 UserDAO를 가리킴
     private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
@@ -97,4 +97,17 @@ public class TeamDAO extends UserDAO{
    public ArrayList<String> getTasks(){
        return null;
    }
+
+   public String getTeamName(){
+    return teamName;
+   }
+   public void setTeamName(String teamName)
+   {
+        this.teamName = teamName;
+   }
+@Override
+public void updateNotification(String updateText) {
+    System.out.println("변경된 공지 확인할 것!\n" + updateText);
+    
+}
 }

@@ -9,9 +9,12 @@ public class Notice {
 	public int getLen() {
 		return teamNotices.size();
 	}
-
 	public Notice() {
 		this.teamNotices = new ArrayList<String>();
+	}
+	
+	public ArrayList<String> getteamNotices(){
+		return teamNotices;
 	}
 	
 	public boolean addNotice(String newNotice) {
@@ -34,7 +37,6 @@ public class Notice {
 			System.out.println("No Notice."+ "\n");
 			return ;
 		}
-		
 		
 		for(String str : teamNotices)
 			System.out.println(i++ + ". " + str);

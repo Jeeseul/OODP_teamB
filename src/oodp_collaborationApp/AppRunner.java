@@ -37,6 +37,7 @@ public class AppRunner
         userList.addUser(user2);
         userList.addUser(user3);
         userList.addUser(user4);
+        userList.setTeamName("test1");
         
         do {
         	//FrontPage
@@ -115,7 +116,7 @@ public class AppRunner
                 		cursor = null;
                 		break;
                 	case 1: //notice
-                		noticeRun.run();
+                		noticeRun.run(userList.GetTeamName() ,userList);
                 		break;
                 	case 2: //task
                 		taskRun.run(userList, cursor);

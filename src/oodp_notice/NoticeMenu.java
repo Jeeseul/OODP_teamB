@@ -14,6 +14,8 @@ public class NoticeMenu {
         System.out.println("2. Edit notice");
         System.out.println("3. Remove notice");
         System.out.println("4. Show notices ALL");
+        System.out.println("5. save notices using Memento");
+        System.out.println("6. restore notices using Memento");
         System.out.println("\nPlease Select Menu: ");
     } 
 	public static void displayTeamManager()
