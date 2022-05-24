@@ -1,6 +1,13 @@
 package oodp_user;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class TodoUser {
     public static void toprintLogin(){
@@ -28,6 +35,7 @@ public class TodoUser {
 
     public static UserDAO toLoginUser(TeamDAO u, Scanner sc){
         System.out.println("*** login user ***");
+        sc.nextLine();
             System.out.print("user id : ");
             String id = sc.nextLine();
             System.out.print("user password : ");
@@ -44,6 +52,7 @@ public class TodoUser {
 
     public static void toAddUser(TeamDAO u, Scanner sc){
         System.out.println("*** add user ***");
+            sc.nextLine();
             System.out.print("user id : ");
             String id = sc.nextLine();
             System.out.print("user name : ");
@@ -88,5 +97,60 @@ public class TodoUser {
         for(int i=0; i<3; i++)
             if(havetype[i] == 0) return false;
         return true;
+    }
+
+    public static void saveList(TeamDAO userList, String filename) {
+		//filewriter�
+		try {
+			Writer w = new FileWriter(filename);
+			
+			for (UserDAO item : userList.getList()) {
+                if(item.getType()=="1"){
+                    NormalUser i = new NormalUser(item.getName(), item.getID(), item.getPassword(), 1);
+                    w.write(i.toSaveString());
+                }
+				else{
+                    AdminUser i = new AdminUser(item.getName(), item.getID(), item.getPassword(), 0);
+                    w.write(i.toSaveString());
+                }
+			}
+			w.close();
+			
+			System.out.println("sucess save list");
+		} catch (FileNotFoundException e) {
+			System.out.println("file no exist\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+    public static void loadList(TeamDAO userList, String filename) {
+        //bufferedreader, filereader, string tokenize
+		try {
+			BufferedReader  br = new BufferedReader(new FileReader(filename));
+			String oneline;
+			while((oneline = br.readLine()) != null) {
+				// System.out.print((char) oneline);
+				StringTokenizer st = new StringTokenizer(oneline, "##");
+				String name = st.nextToken();
+				String id = st.nextToken();
+				String password = st.nextToken();
+				String type = st.nextToken();
+				if(type.equals("1")) {
+                    NormalUser user = new NormalUser(name, id, password, 1);
+                    userList.addUser(user);
+                }
+                else {
+                    AdminUser user = new AdminUser(name, id, password, 0);
+                    userList.addUser(user);
+                }
+			}
+			System.out.println("\n sucess loading data");
+			br.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("file no exist\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }

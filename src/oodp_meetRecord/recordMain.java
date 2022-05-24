@@ -15,8 +15,8 @@ public class recordMain {
 		
 		do {
 			Todorecord.prompt();
-			//»ç¿ë¹ýÀ» ¸Å¹ø Ç¥ÇöÇÏÁö ¾Ê°í hel¸í·É¾î ÀÔ·Â ½Ã¿¡ ³ªÅ¸³ªµµ·Ï ¼öÁ¤
-			//menu.propmpt()Ãß°¡
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¹ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ helï¿½ï¿½ï¿½É¾ï¿½ ï¿½Ô·ï¿½ ï¿½Ã¿ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//menu.propmpt()ï¿½ß°ï¿½
 			isList = false;
 			String choice = sc.nextLine();
 			

@@ -98,4 +98,8 @@ public class AdminUser extends UserDAO {
         return "id : " + this.ID + ", name : " + this.name
             + ", password : " + this.password + ", type : " + this.type;
     }
+
+    public String toSaveString() {
+        return name + "##" + ID + "##" + password + "##" + type + "\n";
+    }
 }

@@ -7,6 +7,7 @@ public class Main{
         TeamDAO UserList = new TeamDAO();
         int input;
         UserDAO curuser = null;
+        TodoUser.loadList(UserList, "user.txt");
         int loginexit = 1;
         int userexit = 1;
 
@@ -47,6 +48,7 @@ public class Main{
             }
         }
         sc.close();
+        TodoUser.saveList(UserList, "user.txt");
         System.out.println("System exit! bye!");
     }
 }
