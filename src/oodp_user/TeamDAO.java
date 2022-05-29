@@ -5,7 +5,7 @@ import oodp_task.SubtaskDAO;
 
 public class TeamDAO extends UserDAO implements NoticeObserver {
     private String teamName;
-    // º¹¼ö °³ÀÇ UserDAO¸¦ °¡¸®Å´
+    // ë³µìˆ˜ ê°œì˜ UserDAOë¥¼ ê°€ë¦¬í‚´
     private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
 
     public TeamDAO() {
@@ -71,17 +71,17 @@ public class TeamDAO extends UserDAO implements NoticeObserver {
         return res;
     }
 
-    // UserÀ» UserList¿¡ Ãß°¡
+    // Userì„ UserListì— ì¶”ê°€
     public void addUser(UserDAO user){
         UserList.add(user);
     }
-    // UserÀ» ¼öÁ¤
+    // Userì„ ìˆ˜ì •
     public void updateUser(UserDAO user, UserDAO updated){
         int index = UserList.indexOf(user);
         UserList.remove(index);
         UserList.add(updated);
     }
-    // UserÀ» UserList¿¡¼­ Á¦°Å
+    // Userì„ UserListì—ì„œ ì œê±°
     public void deleteUser(UserDAO user){
         UserList.remove(user);
     }
@@ -111,7 +111,7 @@ public class TeamDAO extends UserDAO implements NoticeObserver {
     
     @Override
     public void updateNotification(String updateText) {
-        System.out.println("º¯°æµÈ °øÁö È®ÀÎÇÒ °Í!\n" + updateText);
+        System.out.println("ë³€ê²½ëœ ê³µì§€ í™•ì¸í•  ê²ƒ!\n" + updateText);
         
     }
     
