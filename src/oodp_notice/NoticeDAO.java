@@ -2,6 +2,7 @@ package oodp_notice;
 
 import java.util.TreeMap;
 import oodp_user.NoticeObserver;
+import oodp_notice.oodp_decorator.*;
 import java.util.ArrayList;
 
 /*
@@ -12,7 +13,8 @@ import java.util.ArrayList;
  *  => teamDAO를 가지고 있다고 생각하는 모양새가 좀 이상하다고 생각함!
  * 	만약에 아닌거 같으면 그냥 teamDAO를 가지고 있는 방식으로 하자!
  */
-public class NoticeDAO {
+
+ public class NoticeDAO {
 
 	// teamMember 변수 여기다 넣을지 잘 생각하기!
 
@@ -53,7 +55,6 @@ public class NoticeDAO {
 			return true;
 		else
 			return false;
-		
 	}
 
 	public void printAllTeam() {
@@ -94,10 +95,8 @@ public class NoticeDAO {
 		else {
 			System.out.println("공지입력이 성공했습니다.");
 			insertValue = team.getNoticeText(team.getLen());
-			System.out.println(insertValue);
 			// 옵저버 패턴
 			notifyingUpdate(insertValue);
-			
 		}
 
 	}
@@ -120,7 +119,6 @@ public class NoticeDAO {
 				else {
 					System.out.println("공지 변경이 성공했습니다.");
 					updateValue = team.getNoticeText(index);
-					System.out.println(updateValue);
 					// 옵저버 패턴
 					notifyingUpdate(updateValue);
 				}
@@ -149,7 +147,6 @@ public class NoticeDAO {
 				
 				else {
 					System.out.println("공지 삭제가 성공했습니다.");
-					System.out.println(returnValue);
 					// 옵저버 패턴
 					notifyingUpdate(returnValue);
 				}
@@ -160,10 +157,26 @@ public class NoticeDAO {
 		}
 	}
 	
+	// public void readAllNotion() {
+	// 	Notice team = teams.get(teamName);
+	// 	System.out.println(this.teamName);
+	// 	team.printAllNotices();
+	// }
+
 	public void readAllNotion() {
+		NoticeDisplay printAllNotice = new NoticeTeamPrintDecorator();
+		printAllNotice = new NoticepPrintAllDecorator(printAllNotice);
+		
 		Notice team = teams.get(teamName);
-		System.out.println(this.teamName);
-		team.printAllNotices();
+		printAllNotice.draw(team, teamName);
+	}
+
+	public void findAllNotion() {
+		NoticeDisplay findAllNotion = new NoticeTeamPrintDecorator();
+		findAllNotion = new NoticeFindAllDecorator(findAllNotion);
+		
+		Notice team = teams.get(teamName);
+		findAllNotion.draw(team, teamName);
 	}
 
 
