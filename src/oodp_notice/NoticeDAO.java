@@ -172,9 +172,8 @@ import java.util.ArrayList;
 	}
 
 	public void findAllNotion() {
-		NoticeDisplay findAllNotion = new NoticeTeamPrintDecorator();
-		findAllNotion = new NoticeFindAllDecorator(findAllNotion);
-		
+		NoticeDisplay findAllNotion = new NoticeFindAllDecorator(new NoticeTeamPrintDecorator());
+		//findAllNotion = new NoticeFindAllDecorator(findAllNotion);
 		Notice team = teams.get(teamName);
 		findAllNotion.draw(team, teamName);
 	}
