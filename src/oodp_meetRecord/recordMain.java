@@ -15,8 +15,8 @@ public class recordMain {
 		
 		do {
 			Todorecord.prompt();
-			//������ �Ź� ǥ������ �ʰ� hel���ɾ� �Է� �ÿ� ��Ÿ������ ����
-			//menu.propmpt()�߰�
+			//사용법을 매번 표현하지 않고 hel명령어 입력 시에 나타나도록 수정
+			//menu.propmpt()추가
 			isList = false;
 			String choice = sc.nextLine();
 			
