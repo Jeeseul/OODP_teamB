@@ -19,7 +19,6 @@ public class NoticeFindAllDecorator extends NoticepPrintAllDecorator {
         
         System.out.println("검색할 문자를 입력하세요!");
         String target = NoticeConsole.putStringToconsole();
-        // ArrayList<String> na =  team.getteamNotices(); 
 		for (String str : team.getteamNotices()) {
 			if (str.contains(target)) {
 				System.out.println(str);

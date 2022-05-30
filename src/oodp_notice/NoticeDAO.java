@@ -49,6 +49,9 @@ import java.util.ArrayList;
 		teams.put(teamName, team);
 		this.teamMember = teamDAO;
 	}
+	// this is for testcase
+	public NoticeDAO() {
+	}
 	
 	public boolean isEmpty() {
 		if (teams.isEmpty())
@@ -164,16 +167,13 @@ import java.util.ArrayList;
 	// }
 
 	public void readAllNotion() {
-		NoticeDisplay printAllNotice = new NoticeTeamPrintDecorator();
-		printAllNotice = new NoticepPrintAllDecorator(printAllNotice);
-		
+		NoticeDisplay printAllNotice = new NoticepPrintAllDecorator(new NoticeCountDecorator(new NoticeTeamPrintDecorator()));
 		Notice team = teams.get(teamName);
 		printAllNotice.draw(team, teamName);
 	}
 
 	public void findAllNotion() {
 		NoticeDisplay findAllNotion = new NoticeFindAllDecorator(new NoticeTeamPrintDecorator());
-		//findAllNotion = new NoticeFindAllDecorator(findAllNotion);
 		Notice team = teams.get(teamName);
 		findAllNotion.draw(team, teamName);
 	}
