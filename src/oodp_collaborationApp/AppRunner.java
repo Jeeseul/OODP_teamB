@@ -6,6 +6,7 @@ import oodp_reservation.*;
 import oodp_user.*;
 import java.util.Scanner;
 import oodp_meetRecord.*;
+import oodp_meetSchedule.scheduleMain;
 
 
 public class AppRunner 
@@ -142,7 +143,10 @@ public class AppRunner
                 	case 4: //meeting record
                         recordMain.start();
                         break;
-                	case 5: //logout
+                	case 5: //meeting schedule record and manage
+                        scheduleMain.run();
+                        break;
+                	case 6: //logout
                 		TodoUser.toLogoutUser(cursor, sc);
                     	if(cursor.getLogincheck().equals("0")) cursor = null;
                         appExit = true;
