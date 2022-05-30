@@ -19,7 +19,8 @@ public class TodoAppRunner
 	    System.out.println("to manage tasks, press 2");
 	    System.out.println("to reserve meetingroom, press 3");
 	    System.out.println("to record meeting, press 4");
-	    System.out.println("to logout, press 5");
+	    System.out.println("to manage or record meeting schedule, press 5");
+	    System.out.println("to logout, press 6");
 	    System.out.println("to exit front page, press 0\n");
 	}
 	
