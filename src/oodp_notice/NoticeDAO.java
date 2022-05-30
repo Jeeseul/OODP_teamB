@@ -159,12 +159,6 @@ import java.util.ArrayList;
 			}
 		}
 	}
-	
-	// public void readAllNotion() {
-	// 	Notice team = teams.get(teamName);
-	// 	System.out.println(this.teamName);
-	// 	team.printAllNotices();
-	// }
 
 	public void readAllNotion() {
 		NoticeDisplay printAllNotice = new NoticepPrintAllDecorator(new NoticeCountDecorator(new NoticeTeamPrintDecorator()));
