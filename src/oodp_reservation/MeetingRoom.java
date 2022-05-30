@@ -27,14 +27,14 @@ public class MeetingRoom {
 		}
 		reservation[month].put(day, time);
 	
-		//System.out.println("ÀúÀå: "+reservation.get(day));
+		//System.out.println("ì €ì¥: "+reservation.get(day));
 		//Integer[] newThing = reservation.get(day);
 		//for(int i =0;i<24;i++) System.out.println(i+": "+newThing[i]);
 		return 1;
 	}
 	
 	public int checkReservation(int month,int day,int startTime,int endTime) {
-		//ÇöÀç ¿¹¾àÇÏ·Á´Â ³¯Â¥¿¡ È¸ÀÇ°¡ Á¸ÀçÇÏ±ä ÇÔ!
+		//í˜„ì¬ ì˜ˆì•½í•˜ë ¤ëŠ” ë‚ ì§œì— íšŒì˜ê°€ ì¡´ì¬í•˜ê¸´ í•¨!
 		if(reservation[month].containsKey(day)) {
 			//System.out.println(reservation.get(day));
 			Integer[] newThing = new Integer[24];

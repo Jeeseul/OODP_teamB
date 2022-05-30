@@ -17,7 +17,7 @@ public class MeetingRoomRunner {
 		// }
 		MeetingRoomRunner m = new MeetingRoomRunner();
 		m.getInfo();
-		//¿¹¾à ¿Ï·á ÈÄ¿¡´Â ¾îµğ·Î °¡¾ßÇÏ´Â °É±î¿ä? 
+		//ì˜ˆì•½ ì™„ë£Œ í›„ì—ëŠ” ì–´ë””ë¡œ ê°€ì•¼í•˜ëŠ” ê±¸ê¹Œìš”? 
 	}
 	
 	public static void main(String[] args) {
@@ -30,52 +30,52 @@ public class MeetingRoomRunner {
 		MeetingRoom meetingRoom = MeetingRoom.getInstance();
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("=====È¸ÀÇ½Ç ¿¹¾àÃ¢=====");
-		//System.out.println("1. Æ¯Á¤ ³¯Â¥ ¿¹¾à"); //´çÀÏ ¿¹¾à ±â´É ÀÌ¹ø¿¡ ÀÖ¾î¾ßÇÏ´Â °Ç°¡¿ä? 
+		System.out.println("=====íšŒì˜ì‹¤ ì˜ˆì•½ì°½=====");
+		//System.out.println("1. íŠ¹ì • ë‚ ì§œ ì˜ˆì•½"); //ë‹¹ì¼ ì˜ˆì•½ ê¸°ëŠ¥ ì´ë²ˆì— ìˆì–´ì•¼í•˜ëŠ” ê±´ê°€ìš”? 
 		do {
 			do {
 				checkReservation = true;
 			//	do {
-			//		System.out.println("¿¹¾àÇÏ±â ¿øÇÏ½Ã´Â È¸ÀÇ½Ç ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\t1. biggest\n\t2. medium\n\t3. smallest\n: ");
+			//		System.out.println("ì˜ˆì•½í•˜ê¸° ì›í•˜ì‹œëŠ” íšŒì˜ì‹¤ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\t1. biggest\n\t2. medium\n\t3. smallest\n: ");
 			//		meetingRoomNum = sc.nextInt();
-			//		if(meetingRoomNum >3 || meetingRoomNum <1 ) System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+			//		if(meetingRoomNum >3 || meetingRoomNum <1 ) System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 			//	}while(meetingRoomNum >3 || meetingRoomNum <1 );
 				
 				do {
-					System.out.println("¿¹¾àÇÏ±â ¿øÇÏ½Ã´Â '¿ù'À» ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+					System.out.println("ì˜ˆì•½í•˜ê¸° ì›í•˜ì‹œëŠ” 'ì›”'ì„ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 					month = Integer.parseInt(sc.nextLine());
-					if(month >12 || month <1 ) System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+					if(month >12 || month <1 ) System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 				}while(month >12 || month <1);
 				
 				do {
-					System.out.println("¿¹¾àÇÏ±â ¿øÇÏ½Ã´Â 'ÀÏ'À» ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+					System.out.println("ì˜ˆì•½í•˜ê¸° ì›í•˜ì‹œëŠ” 'ì¼'ì„ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 					day = Integer.parseInt(sc.nextLine());
-					if(day > month_length[month] || day < 1 ) System.out.println("´Ù½Ã ÀÏÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+					if(day > month_length[month] || day < 1 ) System.out.println("ë‹¤ì‹œ ì¼ìë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 				}while(day >month_length[month] || day <1);
 				
 				do {
-					System.out.println("¿¹¾àÇÏ½Ã´Â È¸ÀÇ ½ÃÀÛ½Ã°£À» ÀÔ·ÂÇØÁÖ¼¼¿ä(ex. 13): ");
+					System.out.println("ì˜ˆì•½í•˜ì‹œëŠ” íšŒì˜ ì‹œì‘ì‹œê°„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”(ex. 13): ");
 					startTime = Integer.parseInt(sc.nextLine());
-					if(startTime >23 || startTime <0 ) System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+					if(startTime >23 || startTime <0 ) System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 				}while(startTime >23 || startTime <0);
 				
 				do {
-					System.out.println("¿¹¾àÇÏ½Ã´Â È¸ÀÇ ³¡ ½Ã°£À» ÀÔ·ÂÇØÁÖ¼¼¿ä(ex. 15): ");
+					System.out.println("ì˜ˆì•½í•˜ì‹œëŠ” íšŒì˜ ë ì‹œê°„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”(ex. 15): ");
 					endTime = Integer.parseInt(sc.nextLine());
-					if(endTime >24 && endTime <1 ) System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
-					if(startTime == endTime) System.out.println("½ÃÀÛ ½Ã°£°ú ³¡½Ã°£ÀÌ °°½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+					if(endTime >24 && endTime <1 ) System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
+					if(startTime == endTime) System.out.println("ì‹œì‘ ì‹œê°„ê³¼ ëì‹œê°„ì´ ê°™ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 				}while(endTime >24 || endTime <1 || startTime > endTime || startTime == endTime);
 				
-				//false = ¿¹¾àÇÒ ¼ö ¾ø´Ù´Â ÀÇ¹Ì 
+				//false = ì˜ˆì•½í•  ìˆ˜ ì—†ë‹¤ëŠ” ì˜ë¯¸ 
 				if(/*meetingRooms[meetingRoomNum-1]*/meetingRoom.checkReservation(month,day,startTime,endTime)==0) {
 					checkReservation = false;
-					System.out.println("¿¹¾àÇÏ½Ã·Á´Â ½Ã°£Àº ÀÌ¹Ì ¿¹¾àÀÌ Â÷ÀÖ½À´Ï´Ù. ´Ù¸¥ ½Ã°£ÀÌ³ª È¸ÀÇ½Ç·Î ½ÃµµÇØÁÖ¼¼¿ä. ");//Á¶È¸ÇÏ´Â ±â´ÉÀÌ ¾ø¾î¼­ ¾î´À ½Ã°£ÀÌ °ãÄ¡´ÂÁö´Â ¸» ¾ÈÇØ¿ä!
+					System.out.println("ì˜ˆì•½í•˜ì‹œë ¤ëŠ” ì‹œê°„ì€ ì´ë¯¸ ì˜ˆì•½ì´ ì°¨ìˆìŠµë‹ˆë‹¤. ë‹¤ë¥¸ ì‹œê°„ì´ë‚˜ íšŒì˜ì‹¤ë¡œ ì‹œë„í•´ì£¼ì„¸ìš”. ");//ì¡°íšŒí•˜ëŠ” ê¸°ëŠ¥ì´ ì—†ì–´ì„œ ì–´ëŠ ì‹œê°„ì´ ê²¹ì¹˜ëŠ”ì§€ëŠ” ë§ ì•ˆí•´ìš”!
 				}
 			}while(checkReservation == false);
 			
 			int result = /*meetingRooms[meetingRoomNum-1]*/meetingRoom.addReserve(month, day, startTime, endTime);
-			if(result == 1) System.out.println("¿¹¾àÀÌ ¼º°øÀûÀ¸·Î ¿Ï·áµÇ¾ú½À´Ï´Ù.\n 1. ´Ù¸¥ ¿¹¾à ÁøÇà \t2. ¿¹¾à Á¾·á");
-			else if(result !=1 ||result != 2) System.out.println("¿¹»óÄ¡¸øÇÑ ÀÔ·ÂÀ¸·Î Á¾·áµË´Ï´Ù.");
+			if(result == 1) System.out.println("ì˜ˆì•½ì´ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\n 1. ë‹¤ë¥¸ ì˜ˆì•½ ì§„í–‰ \t2. ì˜ˆì•½ ì¢…ë£Œ");
+			else if(result !=1 ||result != 2) System.out.println("ì˜ˆìƒì¹˜ëª»í•œ ì…ë ¥ìœ¼ë¡œ ì¢…ë£Œë©ë‹ˆë‹¤.");
 			recursive = Integer.parseInt(sc.nextLine());
 		}while(recursive == 1);
 		//MeetingRoomsc.close();

@@ -7,7 +7,7 @@ public class NoticeMemento {
     private TreeMap<String, Notice> restoreOfTeams;
     private String restoreOfTeamName;
 
-    public NoticeMemento(TreeMap<String, Notice> state, String teamName) {
+    NoticeMemento(TreeMap<String, Notice> state, String teamName) {
     	this.restoreOfTeams = state;
         this.restoreOfTeamName = teamName;
     }
@@ -40,4 +40,3 @@ public class NoticeMemento {
 //
 
 }
-

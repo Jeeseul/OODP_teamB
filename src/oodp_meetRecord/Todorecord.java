@@ -96,7 +96,7 @@ public class Todorecord
 			System.out.println("num doesn't exist");
 			return;
 		}
-		sc.nextLine(); //¹öÆÛ ºñ¿ì°¡
+		sc.nextLine(); //ë²„í¼ ë¹„ìš°ê°€
 		System.out.print("new title : ");
 		String new_title = sc.nextLine();
 		if (l.isDuplicate(new_title)) {
@@ -131,7 +131,7 @@ public class Todorecord
 	}
 	
 	public static void saveList(recordList l, String filename) {
-		//filewriterÀÌ¿ë
+		//filewriterì´ìš©
 		try {
 			Writer w = new FileWriter(filename);
 			
@@ -205,7 +205,7 @@ public class Todorecord
 	}
 
 	public static void listCate(recordList l) {
-		HashSet<String> cate = new HashSet<String>();//HashSet»ı¼º
+		HashSet<String> cate = new HashSet<String>();//HashSetìƒì„±
 		for (recordDAO item : l.getList()) {
 			cate.add(item.getCategory());
 		}

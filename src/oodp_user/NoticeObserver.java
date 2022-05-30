@@ -1,4 +1,3 @@
-//package oodp_notice;
 package oodp_user;
 
 public interface  NoticeObserver {
