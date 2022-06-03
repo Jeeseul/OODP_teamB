@@ -14,7 +14,7 @@ public class scheduleDAO {
 	   public scheduleDAO(String title, String team, String due_date){
 	       this.title=title;
 	       this.team=team;
-	       DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	       DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	       Date date1 = new Date();        
 	       this.current_date= dateFormat.format(date1);
 	       this.setDue_date(due_date);
@@ -23,7 +23,7 @@ public class scheduleDAO {
 	   public scheduleDAO(String title, String team, String date, String due_date){
 	        this.title=title;
 	        this.team=team;
-	        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date1 = new Date();        
 	        this.current_date= dateFormat.format(date1);
 	        this.setDue_date(due_date);

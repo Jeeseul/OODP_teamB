@@ -30,7 +30,7 @@ public class scheduleList {
 	}
 
 	public void sortByName() {
-		//Collections.sort(list, new TodoSortByName());
+		//Collections.sort(list, new scheduleSortByName());
 	}
 
 	public void listAll() {
@@ -39,7 +39,7 @@ public class scheduleList {
 		int i=0;
 		for (scheduleDAO myitem : list) {
 			i++;
-			System.out.println(i + "] " + myitem.getTitle() + " : " + myitem.getTeam()+ " : " + myitem.getCurrent_date() + myitem.getDue_date());
+			System.out.println(i + "] " + myitem.getTitle() + " : " + myitem.getTeam()+ " : " + myitem.getCurrent_date() +  " : " +myitem.getDue_date());
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class scheduleList {
 	}
 
 	public void sortByDate() {
-		//Collections.sort(list, new TodoSortByDate());
+		//Collections.sort(list, new scheduleSortByDate().compare(null, null));
 	}
 
 	public scheduleDAO indexOf(int num) {

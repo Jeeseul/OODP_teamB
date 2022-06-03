@@ -50,7 +50,7 @@ public class scheduleRecord {
 		System.out.print("team : ");
 		team = sc.nextLine();
 		
-		System.out.print("due_date : ");
+		System.out.print("schedule_date (ex. 2022/05/07): ");
 		due_date = sc.nextLine();
 		
 		scheduleDAO t = new scheduleDAO(title, team, due_date);
@@ -103,7 +103,7 @@ public class scheduleRecord {
 		System.out.print("new team : ");
 		String new_team = sc.nextLine();
 		
-		System.out.print("new due_date : ");
+		System.out.print("new schedule_date : ");
 		String new_due_date = sc.nextLine().trim();
 		
 		l.deleteItem(l.indexOf(num));
