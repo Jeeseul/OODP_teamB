@@ -1,5 +1,6 @@
 package oodp_meetSchedule;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,12 +35,13 @@ public class scheduleList {
 	}
 
 	public void listAll() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 		System.out.println("\n"
 				+ "inside list_All method\n");
 		int i=0;
 		for (scheduleDAO myitem : list) {
 			i++;
-			System.out.println(i + "] " + myitem.getTitle() + " : " + myitem.getTeam()+ " : " + myitem.getCurrent_date() +  " : " +myitem.getDue_date());
+			System.out.println(i + "] " + myitem.getTitle() + " : " + myitem.getTeam()+ " : " + myitem.getDue_date().format(formatter) +  " : " +myitem.getCurrent_date());
 		}
 	}
 	
@@ -48,7 +50,7 @@ public class scheduleList {
 	}
 
 	public void sortByDate() {
-		//Collections.sort(list, new scheduleSortByDate().compare(null, null));
+		Collections.sort(list, new scheduleSortByDate());
 	}
 
 	public scheduleDAO indexOf(int num) {

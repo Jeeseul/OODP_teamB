@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -50,10 +52,12 @@ public class scheduleRecord {
 		System.out.print("team : ");
 		team = sc.nextLine();
 		
-		System.out.print("schedule_date (ex. 2022/05/07): ");
+		System.out.print("schedule_date (ex.2022/05/07 17:00): ");
 		due_date = sc.nextLine();
-		
-		scheduleDAO t = new scheduleDAO(title, team, due_date);
+		//due_date LocalDateTime형식으로 변환하는코드 여기 작성 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+		LocalDateTime cus_due_date = LocalDateTime.parse(due_date, formatter);
+		scheduleDAO t = new scheduleDAO(title, team, cus_due_date);
 		list.addItem(t);
 	}
 
@@ -105,21 +109,25 @@ public class scheduleRecord {
 		
 		System.out.print("new schedule_date : ");
 		String new_due_date = sc.nextLine().trim();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+		LocalDateTime cus_new_due_date = LocalDateTime.parse(new_due_date, formatter);
+		
 		
 		l.deleteItem(l.indexOf(num));
-		scheduleDAO t = new scheduleDAO(new_title, new_team, new_due_date);
+		scheduleDAO t = new scheduleDAO(new_title, new_team, cus_new_due_date);
 		l.addItem(t);
 		System.out.println("item updated");
 
 	}
 
 	public static void listAll(scheduleList l) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 		int i=0;
 		System.out.print("** list, " + l.size() + " ***");
 		for (scheduleDAO item : l.getList()) {
 			i++;
 			System.out.println("\n " + i + "] " + item.getTitle() + "\n    " + item.getTeam()
-					+ "\n    " + item.getCurrent_date()+ "\n    " + item.getDue_date());
+					+ "\n    " + item.getDue_date().format(formatter)+ "\n    " + item.getCurrent_date());
 		}
 	}
 	
@@ -146,6 +154,7 @@ public class scheduleRecord {
 		//bufferedreader, filereader, string tokenize
 		try {
 			BufferedReader  br = new BufferedReader(new FileReader(filename));
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 			
 			String oneline;
 			while((oneline = br.readLine()) != null) {
@@ -155,11 +164,12 @@ public class scheduleRecord {
 				String team = st.nextToken();
 				String date = st.nextToken();
 				String due_date = st.nextToken();
-				
-				scheduleDAO i = new scheduleDAO (title, team, date, due_date);
+				//LocalDateTime cus_due_date = LocalDateTime.parse(due_date, formatter);
+				LocalDateTime cus_due_date = LocalDateTime.parse(due_date);
+				scheduleDAO i = new scheduleDAO (title, team, date, cus_due_date);
 				l.addItem(i);
 			}
-			System.out.println("\n sucess loading data");
+			//System.out.println("\n sucess loading data");
 			br.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("file no exist\n");
@@ -169,13 +179,14 @@ public class scheduleRecord {
 	}
 
 	public static void find(scheduleList l, String str) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 		int i=0;
 		int count = 0;
 		for (scheduleDAO item : l.getList()) {
 			i++;
 			if(item.getTitle().contains(str) || item.getTeam().contains(str)) {
 				System.out.println("\n " + i + "] " + item.getTitle() + "\n    " + item.getTeam()
-					+ "\n    " + item.getCurrent_date()+ "\n    " +  item.getDue_date());
+					+ "\n    " + item.getDue_date().format(formatter)+ "\n    " +  item.getCurrent_date());
 				count++;
 			}	
 		}
