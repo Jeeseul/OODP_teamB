@@ -19,6 +19,9 @@ public class AppRunner
         TaskManageRunner taskRun = new TaskManageRunner();
         NoticeRunner noticeRun = new NoticeRunner();
         MeetingRoomRunner meetingroomRun = new MeetingRoomRunner();
+        //This is just ininialization
+        NoticeDAO previousIteration = new NoticeDAO();
+        NoticeReadChecker nReadChecker;
         
         UserDAO cursor = null;
         
@@ -29,7 +32,8 @@ public class AppRunner
 		
         int runInput;
         int loginInput;
-        
+        int checkInterationCount = 0;
+
         //Test Data - user account
         AdminUser user1 = new AdminUser("John", "admin00", "Ad!1q2w3e", 0);
         AdminUser user2 = new AdminUser("Jake", "admin01", "Ad@4r5t6y", 0);
@@ -44,6 +48,9 @@ public class AppRunner
         userList.addUser(user5);
         userList.addUser(user6);
         userList.setTeamName("test1");
+        // Initialize the NoticeReadChecker
+        nReadChecker = new NoticeReadChecker(userList);
+
         
         do {
         	//FrontPage
@@ -132,8 +139,15 @@ public class AppRunner
                 		cursor = null;
                 		break;
                 	case 1: //notice
-                		noticeRun.run(userList.getTeamName(), userList);
-                		break;
+                        if(checkInterationCount <= 0){
+                            noticeRun.run(userList.getTeamName(), userList, cursor, nReadChecker);
+                            previousIteration = noticeRun.getNoticeDAO();
+                            break;
+                        }
+                        else{
+                            noticeRun.run(userList.getTeamName(), userList, cursor, nReadChecker, previousIteration);
+                            break;
+                        }
                 	case 2: //task
                 		taskRun.run(userList, cursor);
                 		break;
@@ -155,6 +169,7 @@ public class AppRunner
                 		System.out.println("Error: Invalid input. Please try again."); 
                 		break;
                 }
+                checkInterationCount++;
             }
         } while(!quitTheRunner);
         
