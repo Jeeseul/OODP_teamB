@@ -1,6 +1,11 @@
 package oodp_user;
 import java.util.Scanner;
 
+import oodp_meetRecord.recordMain;
+import oodp_meetSchedule.scheduleMain;
+import oodp_notice.NoticeRunner;
+import oodp_reservation.MeetingRoomRunner;
+
 public class Main{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -45,6 +50,12 @@ public class Main{
                           }
                          break;
                 //case n : 다른 활동
+                case 3 : recordMain.start();
+                case 4 : recordMain.start();
+                case 5 : scheduleMain.run();
+                case 6 : NoticeRunner.main(args);
+                //case 7 : MeetingRoomRunner.run();
+                //case 8 : TaskManageRunner.run(UserList, curuser);
             }
         }
         sc.close();
