@@ -81,7 +81,7 @@ public class recordMain {
 					break;
 	
 				case "exit":
-                Todorecord.saveList(l, "todolist.txt");
+                	Todorecord.saveList(l, "todolist.txt");
 					quit = true;
 					break;
 					
@@ -90,7 +90,6 @@ public class recordMain {
 					break;
 				}
 			}
-			
 			if(isList) l.listAll();
 		} while (!quit);
 	}

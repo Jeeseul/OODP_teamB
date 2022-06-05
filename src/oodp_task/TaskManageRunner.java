@@ -4,9 +4,9 @@ import oodp_user.*;
 
 public class TaskManageRunner 
 {
-	private TaskListDAO taskList;
-	
-	public void run(TeamDAO userList, UserDAO cursor) 
+	private static TaskListDAO taskList;
+
+	public static void run(TeamDAO userList, UserDAO cursor) 
 	{
 		Scanner sc = new Scanner(System.in);
 		taskList = new TaskListDAO();

@@ -5,6 +5,7 @@ import oodp_meetRecord.recordMain;
 import oodp_meetSchedule.scheduleMain;
 import oodp_notice.NoticeRunner;
 import oodp_reservation.MeetingRoomRunner;
+import oodp_task.TaskManageRunner;
 
 public class Main{
     public static void main(String[] args){
@@ -51,11 +52,18 @@ public class Main{
                          break;
                 //case n : 다른 활동
                 case 3 : recordMain.start();
+                         break;
                 case 4 : recordMain.start();
+                         break;
                 case 5 : scheduleMain.run();
+                         break;
                 case 6 : NoticeRunner.main(args);
-                //case 7 : MeetingRoomRunner.run();
-                //case 8 : TaskManageRunner.run(UserList, curuser);
+                         break;
+                case 7 : MeetingRoomRunner.main(args);
+                         break;
+                case 8 : TaskManageRunner.run(UserList, curuser);
+                default : System.out.println("\nwrong answer.\n");
+                          break;
             }
         }
         sc.close();
