@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class scheduleList {
+public class scheduleList extends abstractList{
 	private List<scheduleDAO> list;
 
 	public scheduleList() {
@@ -20,7 +20,7 @@ public class scheduleList {
 		list.remove(todoItem);
 	}
 
-	void editItem(scheduleDAO t, scheduleDAO updated) {
+	public void editItem(scheduleDAO t, scheduleDAO updated) {
 		int index = list.indexOf(t);
 		list.remove(index);
 		list.add(updated);
@@ -29,11 +29,11 @@ public class scheduleList {
 	public ArrayList<scheduleDAO> getList() {
 		return new ArrayList<scheduleDAO>(list);
 	}
-
+	@Override
 	public void sortByName() {
 		//Collections.sort(list, new scheduleSortByName());
 	}
-
+	@Override
 	public void listAll() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 		System.out.println("\n"
@@ -44,11 +44,11 @@ public class scheduleList {
 			System.out.println(i + "] " + myitem.getTitle() + " : " + myitem.getTeam()+ " : " + myitem.getDue_date().format(formatter) +  " : " +myitem.getCurrent_date());
 		}
 	}
-	
+	@Override
 	public void reverseList() {
 		Collections.reverse(list);
 	}
-
+	@Override
 	public void sortByDate() {
 		Collections.sort(list, new scheduleSortByDate());
 	}
@@ -56,16 +56,17 @@ public class scheduleList {
 	public scheduleDAO indexOf(int num) {
 		return list.get(num);
 	}
-
+	@Override
 	public Boolean isDuplicate(String title) {
 		for (scheduleDAO item : list) {
 			if (title.equals(item.getTitle())) return true;
 		}
 		return false;
 	}
-
+	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return list.size();
 	}
+
 }

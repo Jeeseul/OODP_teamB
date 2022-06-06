@@ -1,7 +1,9 @@
 package oodp_meetRecord;
 import java.util.*;
 
-public class recordList 
+import oodp_meetSchedule.abstractList;
+
+public class recordList extends abstractList
 {
 	private List<recordDAO> list;
 
@@ -26,11 +28,11 @@ public class recordList
 	public ArrayList<recordDAO> getList() {
 		return new ArrayList<recordDAO>(list);
 	}
-
+	@Override
 	public void sortByName() {
 		//Collections.sort(list, new TodoSortByName());
 	}
-
+	@Override
 	public void listAll() {
 		System.out.println("\n"
 				+ "inside list_All method\n");
@@ -40,11 +42,11 @@ public class recordList
 			System.out.println(i + "] " + myitem.getTitle() + " : " + myitem.getDesc()+ " : " + myitem.getCurrent_date() + " : " + myitem.getCategory()+ " : " + myitem.getDue_date());
 		}
 	}
-	
+	@Override
 	public void reverseList() {
 		Collections.reverse(list);
 	}
-
+	@Override
 	public void sortByDate() {
 		//Collections.sort(list, new TodoSortByDate());
 	}
@@ -52,7 +54,7 @@ public class recordList
 	public recordDAO indexOf(int num) {
 		return list.get(num);
 	}
-
+	@Override
 	public Boolean isDuplicate(String title) {
 		for (recordDAO item : list) {
 			if (title.equals(item.getTitle())) return true;
@@ -60,6 +62,7 @@ public class recordList
 		return false;
 	}
 
+	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return list.size();

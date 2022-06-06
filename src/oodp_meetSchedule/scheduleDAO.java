@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class scheduleDAO {
+public class scheduleDAO extends abstractDAO {
 	   private String title;
 	   private String team;
 	   private String current_date;
@@ -30,11 +30,11 @@ public class scheduleDAO {
 	        this.current_date= dateFormat.format(date1);
 	        this.setDue_date(due_date);
 	    }
-	    
+	   @Override
 	    public String getTitle() {
 	        return title;
 	    }
-
+	   @Override
 	    public void setTitle(String title) {
 	        this.title = title;
 	    }
@@ -46,11 +46,11 @@ public class scheduleDAO {
 	    public void setTeam(String team) {
 	        this.team = team;
 	    }
-
+	    @Override
 	    public String getCurrent_date() {
 	        return current_date;
 	    }
-
+	    @Override
 	    public void setCurrent_date(String current_date) {
 	        this.current_date = current_date;
 	    }
@@ -62,7 +62,7 @@ public class scheduleDAO {
 		public void setDue_date(LocalDateTime due_date) {
 			this.due_date = due_date;
 		}
-		
+		@Override
 		public String toSaveString() {
 	    	return title + "##" + team + "##" + current_date + "##" + due_date + "\n";
 	    }

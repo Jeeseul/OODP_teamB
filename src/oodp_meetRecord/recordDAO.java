@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class recordDAO 
+import oodp_meetSchedule.abstractDAO;
+
+public class recordDAO extends abstractDAO
 {
 	   private String title;
 	   private String desc;
@@ -32,11 +34,11 @@ public class recordDAO
 	        this.setCategory(category);
 	        this.setDue_date(due_date);
 	    }
-	    
+	    @Override
 	    public String getTitle() {
 	        return title;
 	    }
-
+	    @Override
 	    public void setTitle(String title) {
 	        this.title = title;
 	    }
@@ -48,11 +50,11 @@ public class recordDAO
 	    public void setDesc(String desc) {
 	        this.desc = desc;
 	    }
-
+	    @Override
 	    public String getCurrent_date() {
 	        return current_date;
 	    }
-
+	    @Override
 	    public void setCurrent_date(String current_date) {
 	        this.current_date = current_date;
 	    }
@@ -72,9 +74,10 @@ public class recordDAO
 		public void setDue_date(String due_date) {
 			this.due_date = due_date;
 		}
-		
+		@Override
 		public String toSaveString() {
 	    	return title + "##" + desc + "##" + current_date + "##" + category + "##" + due_date + "\n";
 	    }
+
 
 }

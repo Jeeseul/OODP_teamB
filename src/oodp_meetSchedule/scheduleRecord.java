@@ -12,8 +12,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class scheduleRecord {
-	public static void displaymenu()
+public class scheduleRecord{
+
+	public void displaymenu()
     {
         System.out.println();
         System.out.println("1. Add a new item ( add )");
@@ -34,7 +35,7 @@ public class scheduleRecord {
         System.out.print("Command > ");
     }
 
-    public static void createItem(scheduleList list) {
+    public void createItem(scheduleList list) {
 		
 		String title, team, due_date;
 		Scanner sc = new Scanner(System.in);
@@ -61,7 +62,7 @@ public class scheduleRecord {
 		list.addItem(t);
 	}
 
-	public static void deleteItem(scheduleList l) {
+	public void deleteItem(scheduleList l) {
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -83,7 +84,7 @@ public class scheduleRecord {
 	}
 
 
-	public static void updateItem(scheduleList l) {
+	public void updateItem(scheduleList l) {
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -120,7 +121,7 @@ public class scheduleRecord {
 
 	}
 
-	public static void listAll(scheduleList l) {
+	public void listAll(scheduleList l) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 		int i=0;
 		System.out.print("** list, " + l.size() + " ***");
@@ -130,8 +131,8 @@ public class scheduleRecord {
 					+ "\n    " + item.getDue_date().format(formatter)+ "\n    " + item.getCurrent_date());
 		}
 	}
-	
-	public static void saveList(scheduleList l, String filename) {
+ 
+	public void saveList(scheduleList l, String filename) {
 		//filewriter�̿�
 		try {
 			Writer w = new FileWriter(filename);
@@ -149,7 +150,7 @@ public class scheduleRecord {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void loadList(scheduleList l, String filename) {
 		//bufferedreader, filereader, string tokenize
 		try {
@@ -177,8 +178,8 @@ public class scheduleRecord {
 			e.printStackTrace();
 		}
 	}
-
-	public static void find(scheduleList l, String str) {
+	
+	public void find(scheduleList l, String str) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 		int i=0;
 		int count = 0;
@@ -194,7 +195,7 @@ public class scheduleRecord {
 	}
 
 
-	public static void listTeam(scheduleList l) {
+	public void listTeam(scheduleList l) {
 		HashSet<String> Teams = new HashSet<String>();//HashSet����
 		for (scheduleDAO item : l.getList()) {
 			Teams.add(item.getTeam());
@@ -202,4 +203,5 @@ public class scheduleRecord {
 		System.out.println(Teams);
 		System.out.println("total team " + Teams.size() + ".");
 	}
+
 }

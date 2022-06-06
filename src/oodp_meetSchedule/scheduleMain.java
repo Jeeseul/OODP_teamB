@@ -11,6 +11,7 @@ public class scheduleMain {
 		scheduleList l = new scheduleList();
 		boolean isList = false;
 		boolean quit = false;
+		scheduleRecord scheduleRecord = new scheduleRecord();
 		scheduleRecord.loadList(l, "Schedulelist.txt");
 		scheduleRecord.displaymenu();
 		
