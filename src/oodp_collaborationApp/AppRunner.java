@@ -4,9 +4,15 @@ import oodp_task.*;
 import oodp_notice.*;
 import oodp_reservation.*;
 import oodp_user.*;
+
+import java.io.File;
+import java.time.LocalDate;
 import java.util.Scanner;
 import oodp_meetRecord.*;
+import oodp_meetSchedule.scheduleDAO;
+import oodp_meetSchedule.scheduleList;
 import oodp_meetSchedule.scheduleMain;
+import oodp_meetSchedule.scheduleRecord;
 
 
 public class AppRunner 
@@ -73,6 +79,7 @@ public class AppRunner
             while(!loginExit) {
                 TodoUser.toprintLogin();
                 loginInput = Integer.parseInt(sc.nextLine());
+                
                 switch (loginInput) {
                     case 0: //quit loginPage
                     	loginExit = true;
@@ -132,6 +139,26 @@ public class AppRunner
             //main page
             while(!appExit) {
             	TodoAppRunner.toprintMainPage();
+            	//저장된 schedule list 파일 존재하는지 확인 
+            	LocalDate now = LocalDate.now();
+            	File file1 = new File("./Schedulelist.txt");
+                if (file1.exists()) {
+                	System.out.println("===You have meet schedule! Let's check :)===");
+                	scheduleList l = new scheduleList();
+                	scheduleRecord.loadList(l, "Schedulelist.txt");
+                	int count =0;
+                	l.sortByDate();
+                	//오늘 회의 스케줄이 있는지 체크 
+                	for(scheduleDAO one : l.getList()) {
+                		if(one.getDue_date().toLocalDate().equals(now)) {
+                			System.out.println(++count + " - "+one.toString());
+                		}
+                	}
+                	if(count>0)System.out.print("=====Remind today's meeting!=====\n\nSelect the menu number : ");
+                	else System.out.print("==You don't have meeting today! Have a good day~==\n\nSelect the menu number : ");
+                }
+            	
+            	
             	runInput= Integer.parseInt(sc.nextLine());
                 switch(runInput) {
                 	case 0: //Exit Program 
