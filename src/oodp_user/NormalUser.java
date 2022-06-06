@@ -1,7 +1,7 @@
 package oodp_user;
 
 import java.util.ArrayList;
-import oodp_task.SubtaskDAO;
+import oodp_task.*;
 
 public class NormalUser extends UserDAO {
 
@@ -10,17 +10,26 @@ public class NormalUser extends UserDAO {
     private String password;
     private int type;
     private int logincheck;
-    private ArrayList<SubtaskDAO> Tasks;
-
+    
     public NormalUser(String name, String id, String password, int type) {
         this.name = name;
         this.ID = id;
         this.password = password;
         this.type = type;
         this.logincheck = 0;
-        Tasks = new ArrayList<SubtaskDAO>();
-    }
+        this.setTasks(new ArrayList<SubtaskDAO>());
+    }	//without task type
+    public NormalUser(String name, String id, String password, int type, int tasktype) {
+        this.name = name;
+        this.ID = id;
+        this.password = password;
+        this.type = type;
+        this.logincheck = 0;
+        this.setTasks(new ArrayList<SubtaskDAO>());
+        this.setTaskType(tasktype);
+    }	//new!!
 
+    
     public String getName() {
         return name;
     }
@@ -51,38 +60,7 @@ public class NormalUser extends UserDAO {
     public void setLogincheck(int logincheck){
         this.logincheck = logincheck;
     }
-    public ArrayList<SubtaskDAO> getTasks() {
-		return Tasks;
-	}
-    public void setTasks(ArrayList<SubtaskDAO> tasks) {
-		Tasks = tasks;
-	}
     
-    
-    //add, update, delete task to Tasks
-    public int addTask(SubtaskDAO task) {
-		Tasks.add(task);
-		return 1; //success
-	}
-	public int updateTask(SubtaskDAO task, SubtaskDAO updated) {
-		int index = Tasks.indexOf(task);
-        Tasks.remove(index);
-        Tasks.add(updated);
-		return 1; //success
-	}
-	public int deleteTask(SubtaskDAO task){
-        Tasks.remove(task);
-        return 1; //success
-    }
-	
-	
-	//referencing Tasks
-	public int indexOf(SubtaskDAO task){
-        return Tasks.indexOf(task);
-    }
-    public int size(){
-        return Tasks.size();
-    }
     
     //login & logout
     public int login(){
@@ -94,12 +72,14 @@ public class NormalUser extends UserDAO {
         return 1; //success
     }
 
+    
     //toString
     public String toString(){
         return "id : " + this.ID + ", name : " + this.name
             + ", password : " + this.password + ", type : " + this.type;
     }
-
+    
+    //toSaveString
     public String toSaveString() {
         return name + "##" + ID + "##" + password + "##" + type + "\n";
     }

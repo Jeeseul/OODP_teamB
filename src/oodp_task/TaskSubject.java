@@ -13,7 +13,7 @@ public abstract class TaskSubject
 	public void detach(TaskObserver observer) { observers.remove(observer);}
 	
 	//notify changes to observers
-	public void notifyObservers(ArrayList<TaskDAO> taskList) { 
+	public void notifyObservers(TaskListDAO taskList) { 
 		for(TaskObserver observer:observers) observer.update(taskList);
 	}
 }

@@ -4,42 +4,39 @@ import java.util.ArrayList;
 
 public class MainTaskView implements TaskObserver {
 	
-	private static ArrayList<TaskDAO> viewingList = new ArrayList<TaskDAO>();
+	private static ArrayList<TaskDAO> mainCopy = new ArrayList<TaskDAO>();
 
 	//constructor
-	public MainTaskView(ArrayList<TaskDAO> taskList) {
-		TaskListView.setViewingList(taskList);
+	public MainTaskView(TaskListDAO taskList) {
+		TaskListView.setListCopy(taskList.getList());
 	}
 		
 	//get & set
-	public static ArrayList<TaskDAO> getViewingList() {
-		return viewingList;
+	public static ArrayList<TaskDAO> getMainCopy() {
+		return mainCopy;
 	}
-	public static void setViewingList(ArrayList<TaskDAO> viewList) {
-		MainTaskView.viewingList = viewList;
+	public static void setMainCopy(ArrayList<TaskDAO> updatedCopy) {
+		MainTaskView.mainCopy = updatedCopy;
 	}
 		
 	//update
 	@Override
-	public void update(ArrayList<TaskDAO> taskList) {
-			
-		ArrayList<TaskDAO> saveOld = new ArrayList<TaskDAO>();
+	public void update(TaskListDAO taskList) {
+		
+		ArrayList<TaskDAO> saveOld = mainCopy;
 		ArrayList<String> saveTasks = new ArrayList<String>();
-		for(TaskDAO ts:saveOld) 
-			saveTasks.add(ts.getTaskName());
-			
+		for(TaskDAO ts:saveOld) saveTasks.add(ts.getTaskName());
+		
 		//if task list has been changed, do update and notify updating
-		if(!MainTaskView.getViewingList().equals(taskList)) {
-			MainTaskView.setViewingList(taskList);
+		if(!taskList.taskListEquals(MainTaskView.getMainCopy())) {
+			MainTaskView.setMainCopy(taskList.getList());
 			//if new main task was added
-			if(saveOld.size() != MainTaskView.getViewingList().size()) {
-				int num=0;
-				//when saveOld.size()!=0, start index from the end of saveOld 
-				if(saveOld.size()>0) num=saveOld.size()-1;
-				//when saveOld.size()==0, start index from 0
-				for(int i=num;i<MainTaskView.getViewingList().size();i++)
-					System.out.println("new! " + MainTaskView.getViewingList().get(i).getTaskName());
-			}
+			if(saveOld.size() < MainTaskView.getMainCopy().size()) {
+				//start index from the end of saveOld
+				for(int i=saveOld.size();i<MainTaskView.getMainCopy().size();i++)
+					System.out.println("new! " + MainTaskView.getMainCopy().get(i).getTaskName());
+			} 
+			// else if size of saveOld > size of mainCopy: print deleted tasks
 		}		
 	}
 }

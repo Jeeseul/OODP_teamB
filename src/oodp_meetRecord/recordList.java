@@ -6,6 +6,7 @@ import oodp_meetSchedule.abstractList;
 public class recordList extends abstractList
 {
 	private List<recordDAO> list;
+	private SortStratagy sortstratagy;
 
 	public recordList() {
 		this.list = new ArrayList<recordDAO>();
@@ -68,4 +69,11 @@ public class recordList extends abstractList
 		return list.size();
 	}
 
+	public void setSortStrategy(SortStratagy sortstrategy) {
+		this.sortstratagy = sortstrategy;
+	}
+
+	public void sort() {
+		sortstratagy.sort(list);
+	}
 }

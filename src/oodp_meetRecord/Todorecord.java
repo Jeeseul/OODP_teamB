@@ -20,10 +20,8 @@ public class Todorecord
         System.out.println("5. sort the list by date ( ls_cate )");
         System.out.println("6. Find items ( find )");
         System.out.println("7. Find category ( find_cate )");
-        System.out.println("8. sort the list by name ( ls_name_asc )");
-        System.out.println("9. sort the list by name ( ls_name_desc )");
+        System.out.println("8. sort the list by name ( ls_name )");
         System.out.println("10. sort the list by date ( ls_date )");
-        System.out.println("11. sort the list by date ( ls_date_desc )");
         System.out.println("12. exit (exit)");
     }
     

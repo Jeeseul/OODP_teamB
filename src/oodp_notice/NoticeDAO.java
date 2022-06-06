@@ -2,7 +2,8 @@ package oodp_notice;
 
 import java.util.TreeMap;
 import oodp_user.NoticeObserver;
-import oodp_notice.oodp_decorator.*;
+import oodp_notice.oodp_noticeReading.*;
+
 import java.util.ArrayList;
 
 /*
@@ -161,15 +162,16 @@ import java.util.ArrayList;
 	}
 
 	public void readAllNotion() {
-		NoticeDisplay printAllNotice = new NoticepPrintAllDecorator(new NoticeCountDecorator(new NoticeTeamPrintDecorator()));
+		NoticePrintStrategy strategy = new NoticeReader();
 		Notice team = teams.get(teamName);
-		printAllNotice.draw(team, teamName);
+		strategy.draw(team, teamName);
 	}
 
+
 	public void findAllNotion() {
-		NoticeDisplay findAllNotion = new NoticeFindAllDecorator(new NoticeTeamPrintDecorator());
+		NoticePrintStrategy strategy = new NoticeFinder();
 		Notice team = teams.get(teamName);
-		findAllNotion.draw(team, teamName);
+		strategy.draw(team, teamName);
 	}
 
 

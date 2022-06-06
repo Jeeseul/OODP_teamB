@@ -1,11 +1,11 @@
 package oodp_user;
 
 import java.util.ArrayList;
-import oodp_task.SubtaskDAO;
+import oodp_task.*;
 
 public class TeamDAO extends UserDAO implements NoticeObserver {
     private String teamName;
-    // ë³µìˆ˜ ê°œì˜ UserDAOë¥¼ ê°€ë¦¬í‚´
+    // º¹¼ö °³ÀÇ UserDAO¸¦ °¡¸®Å´
     private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
 
     public TeamDAO() {
@@ -59,6 +59,10 @@ public class TeamDAO extends UserDAO implements NoticeObserver {
         res += "\n";
         return res;
     }
+    public ArrayList<UserDAO> getList(){
+        return UserList;
+    }
+    
     
 	//toString
     public String toString(){
@@ -71,73 +75,51 @@ public class TeamDAO extends UserDAO implements NoticeObserver {
         return res;
     }
 
-    // Userì„ UserListì— ì¶”ê°€
+    
+    // UserÀ» UserList¿¡ Ãß°¡
     public void addUser(UserDAO user){
         UserList.add(user);
     }
-    // Userì„ ìˆ˜ì •
+    // UserÀ» ¼öÁ¤
     public void updateUser(UserDAO user, UserDAO updated){
         int index = UserList.indexOf(user);
         UserList.remove(index);
         UserList.add(updated);
     }
-    // Userì„ UserListì—ì„œ ì œê±°
+    // UserÀ» UserList¿¡¼­ Á¦°Å
     public void deleteUser(UserDAO user){
         UserList.remove(user);
     }
-
-    public int indexOf(UserDAO user){
-        return UserList.indexOf(user);
-    }
-    public int size(){
-        return UserList.size();
-    }
+    // Áßº¹ Ã¼Å©
     public Boolean usDuplicate(String id){
         for(UserDAO user : UserList){
             if (id.equals(user.getID()) ) return true;
         }
         return false;
     }
-    public ArrayList<UserDAO> getList(){
-        return UserList;
+    //°øÁö ¾÷µ¥ÀÌÆ®
+    @Override
+    public void updateNotification(String updateText) {
+        System.out.println("º¯°æµÈ °øÁö È®ÀÎÇÒ °Í!\n" + updateText);
+        
     }
+    
+    
+    //referencing
+    public int indexOf(UserDAO user){
+        return UserList.indexOf(user);
+    }
+    @Override
+    public int size(){
+        return UserList.size();
+    }
+    
+    
+    /* Unused over-rid methods */
     public int login(){
         return 0;
     }
     public int logout(){
         return 0;
     }
-    public void setType(int type){}
-    
-    @Override
-    public void updateNotification(String updateText) {
-        System.out.println("ë³€ê²½ëœ ê³µì§€ í™•ì¸í•  ê²ƒ!\n" + updateText);
-        
-    }
-    
-    @Override
-    public int indexOf(SubtaskDAO task) {
-        return 0;
-    }
-	@Override
-	public ArrayList<SubtaskDAO> getTasks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public int addTask(SubtaskDAO task) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int updateTask(SubtaskDAO task, SubtaskDAO updated) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int deleteTask(SubtaskDAO task) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }

@@ -8,8 +8,6 @@ public class TaskDAO
 	private String taskName;
 	private ArrayList<SubtaskDAO> subtasks;
 	private ArrayList<UserDAO> Group;
-	// + private ArrayList<String> files;
-	// + private ArrayList<String> Tags;
 	
 	
 	//constructor
@@ -17,15 +15,11 @@ public class TaskDAO
 		setTaskName("Please set TODO");
 		setGroup(new ArrayList<UserDAO>());
 		setSubtasks(new ArrayList<SubtaskDAO>());
-		// Tags = new ArrayList<String>();
-		// files = new ArrayList<String>(); 
 	}
 	public TaskDAO(String initTask) {
 		setTaskName(initTask);
 		setGroup(new ArrayList<UserDAO>());
 		setSubtasks(new ArrayList<SubtaskDAO>());
-		// Tags = new ArrayList<String>();
-		// files = new ArrayList<String>(); 
 	}
 	
 	
@@ -88,25 +82,34 @@ public class TaskDAO
     }
 	
 	
-	//check duplication of Member in Group
-	public Boolean isDuplicated(String name) {
+	//referencing
+	public boolean taskEquals(TaskDAO task) {
+		boolean isEquals = false;
+		if(this.getTaskName().equals(task.getTaskName())
+				&& (this.getSubtasks().size()==task.getSubtasks().size())
+				&& (this.getGroup().size()==task.getGroup().size())) {
+			isEquals = true;
+			if(!this.getSubtasks().containsAll(task.getSubtasks())) isEquals = false;
+			if(!this.getGroup().containsAll(task.getGroup())) isEquals = false;
+		}
+		return isEquals;
+	} //check task equals
+	public boolean isDuplicated(String name) {
 		for(UserDAO mem : Group) 
 	    	if(name.equals(mem.getName())) return true;
 	    return false;
-	}
+	} //check duplication of Member in Group
 	
 	
-	/* toString: printing template 
-	 * e.g.)
+	/* toString: printing template
 	 * = main task to do <Group: John, Peter>" or "<Group: Empty>"
 	 *   (\t) * subtask to do [John]
 	 *   (\t) * subtask to do [Peter] 
 	 *   (\t) * subtask to do [None]   */
 	
-	//toString
 	public String toString() {
 		//main task
-		String main = "= " + this.taskName + " <Group: ";
+		String main = "= " + this.taskName + " <Team: ";
 		if(!this.Group.isEmpty()) {
 			for(UserDAO member:this.Group) { 
 				if(this.Group.indexOf(member)>0) main += ", ";
@@ -118,7 +121,7 @@ public class TaskDAO
 		//subtask
 		String sub = "";
 		for(SubtaskDAO st:this.subtasks) {
-			sub += "\n\t* " + st.getTaskName();
+			sub += "\n\t* " + st.getTaskType() +": " + st.getTaskName();
 			if(!st.getGroup().isEmpty()) {
 				sub += " [";
 				for(UserDAO mem:st.getGroup()) {
@@ -132,30 +135,6 @@ public class TaskDAO
 		//entire toString
 		return main + sub;
     }   
-	
-	
-	
-	/* append later - Tags, Files
-	public ArrayList<String> getTags() {
-		return Tags;
-	}
-	public ArrayList<String> getFiles() {
-		return files;
-	}
-	
-	public void setTags(ArrayList<String> tags) {
-		Tags = tags;
-	}
-	public void setFiles(ArrayList<String> files) {
-		this.files = files;
-	}
-	
-	public void addTag(String tag) {
-		Tags.add(tag);
-	} 
-	public void addFiles(String file) {
-		files.add(file);
-	} */
 }
 
 	

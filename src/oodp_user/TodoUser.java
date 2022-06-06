@@ -30,6 +30,11 @@ public class TodoUser {
         System.out.println("to continue, press 2");
         if(user.getType().equals("0"))
             System.out.println("to edit users, press 3");
+                System.out.println("to meetRedord 4");
+        System.out.println("to meetSchedule 5");
+        System.out.println("to notice 6");
+        System.out.println("to reservation 7");
+        System.out.println("to task 8");
         System.out.println("to exit, press 0\n");
     }
 
