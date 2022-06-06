@@ -4,14 +4,10 @@ import oodp_user.UserDAO;
 
 public class SubtaskDAO extends TaskDAO 
 {
-	/* TaskType - integer (1~3)
-	 * 1: type1
-	 * 2: type2
-	 * 3: type3
-	 * */
-	private int taskType;
+	/* TaskType - enum (1~4)
+	 * 1: DEVELOP, 2: RESEARCH, 3: DESIGN, 4: FEEDBACK */
+	private TaskTypes taskType;
 	private TaskDAO mainTask;
-
 	
 	//constructor
 	public SubtaskDAO() {
@@ -24,19 +20,14 @@ public class SubtaskDAO extends TaskDAO
 		super(initialName);
 		this.setTaskType(type);
 	}
-	public SubtaskDAO(String initialName, int type, TaskDAO maintask) {
-		super(initialName);
-		this.setTaskType(type);
-		this.setMainTask(maintask);
-	}
 	
 	
 	//get & set
-	public int getTaskType() {
+	public TaskTypes getTaskType() {
 		return taskType;
 	}
 	public void setTaskType(int type) {
-		this.taskType = type;
+		this.taskType = TaskTypes.setTypeByNum(type);
 	}
 	public TaskDAO getMainTask() {
 		return mainTask;
@@ -46,13 +37,16 @@ public class SubtaskDAO extends TaskDAO
 	public void setMainTask(TaskDAO maintask) {
 		this.mainTask = maintask;
 		for(UserDAO mem:this.getGroup())
-			maintask.addMember(mem);
+			if(!maintask.isDuplicated(mem.getName())) 
+				maintask.addMember(mem);
 	} //add subtask's members to maintask's group automatically
 	
 	//delete
 	public int deleteMainTask() {
-		for(UserDAO mem:this.getGroup())
-			this.mainTask.deleteMember(mem);
+		for(UserDAO mem:this.getGroup()) 
+			for(SubtaskDAO st:mem.getTasks()) 
+				if(!st.getMainTask().equals(this.mainTask))
+					this.mainTask.deleteMember(mem);	
 		this.mainTask = null;
 		return 1;
 	}

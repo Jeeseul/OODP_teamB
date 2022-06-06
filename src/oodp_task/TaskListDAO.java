@@ -16,21 +16,20 @@ public class TaskListDAO extends TaskSubject
 	//add (& assign)
 	public int addTask(TaskDAO task) {
         TaskList.add(task);
-        notifyObservers(TaskList);
+        notifyObservers(this);
         return 1; //success
     }
 	public int addSubTask(TaskDAO task, SubtaskDAO subtask) {
 		int index = TaskList.indexOf(task);
 		TaskList.get(index).addSubtask(subtask);
-		notifyObservers(TaskList);
+		notifyObservers(this);
 		return 1; //success
 	}
-	
 	public int assignTask(TaskDAO task, SubtaskDAO subtask, UserDAO member) {
 		if(!task.isDuplicated(member.getName())) task.addMember(member);
 		subtask.addMember(member);
 		member.addTask(subtask);
-		notifyObservers(TaskList);
+		notifyObservers(this);
 		return 1; //success
 	} //assign - to assign User as one of a team
 	
@@ -40,13 +39,13 @@ public class TaskListDAO extends TaskSubject
         int index = TaskList.indexOf(task);
         TaskList.remove(index);
         TaskList.add(updated);
-        notifyObservers(TaskList);
+        notifyObservers(this);
         return 1; //success
     }
     public int updateSubTask(TaskDAO task, SubtaskDAO subtask, SubtaskDAO updated) {
     	int index = TaskList.indexOf(task);
     	TaskList.get(index).updateSubtask(subtask, updated);
-    	notifyObservers(TaskList);
+    	notifyObservers(this);
     	return 1; //success
     }
 
@@ -54,13 +53,13 @@ public class TaskListDAO extends TaskSubject
     //delete
     public int deleteTask(TaskDAO task){
         TaskList.remove(task);
-        notifyObservers(TaskList);
+        notifyObservers(this);
         return 1; //success
     }
     public int deleteSubTask(TaskDAO task, SubtaskDAO subtask) {
     	int index = TaskList.indexOf(task);
     	TaskList.get(index).deleteSubtask(subtask);
-    	notifyObservers(TaskList);
+    	notifyObservers(this);
     	return 1; //success
     }
 
@@ -76,6 +75,16 @@ public class TaskListDAO extends TaskSubject
     	if(TaskList.isEmpty()) return true;
     	else return false;
     }
+    public boolean taskListEquals(ArrayList<TaskDAO> taskList) {
+    	boolean isEquals = false;
+    	if(TaskList.size() == taskList.size()) {
+    		isEquals = true;
+    		for(int i=0; i<TaskList.size(); i++) 
+    			if(!TaskList.get(i).taskEquals(taskList.get(i))) isEquals = false;
+    	}
+    	return isEquals;
+    }
+    
     
     //get & set
     public ArrayList<TaskDAO> getList(){

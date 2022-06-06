@@ -5,18 +5,21 @@ import oodp_user.*;
 public class TaskManageRunner 
 {
 	private static TaskListDAO taskList;
-
+	private static TaskLogsDAO logs;
+	
 	public static void run(TeamDAO userList, UserDAO cursor) 
 	{
 		Scanner sc = new Scanner(System.in);
 		taskList = new TaskListDAO();
+		logs = new TaskLogsDAO();
 		
-		//Observer pattern
-		TaskListView taskView = new TaskListView(taskList.getList());
-		//MainTaskView mainView = new MainTaskView(taskList.getList());
+		//Observer applied
+		TaskListView taskView = new TaskListView(taskList);
+		MainTaskView mainView = new MainTaskView(taskList);
 		
+		//attached observers: taskListView, mainTaskView
 		taskList.attach(taskView); 
-		//taskList.attach(mainView);
+		taskList.attach(mainView);
 		
 		boolean exitTaskManage = false;
 		int taskInput;
@@ -28,9 +31,9 @@ public class TaskManageRunner
 		TaskDAO task2 = new TaskDAO("Project2. New game with Python.");
 		
 		SubtaskDAO subtask1 = new SubtaskDAO("Implement a player class", 1);
-		SubtaskDAO subtask2 = new SubtaskDAO("add a level design to Stage class", 2);
+		SubtaskDAO subtask2 = new SubtaskDAO("Research user datas about the level design", 2);
 		SubtaskDAO subtask3 = new SubtaskDAO("Implement an enemy class", 1);
-		SubtaskDAO subtask4 = new SubtaskDAO("Implement scoreboard screens by observers", 3);
+		SubtaskDAO subtask4 = new SubtaskDAO("Design scoreboard screens", 3);
 		
 		task1.addSubtask(subtask1);
 		task1.addSubtask(subtask2);
@@ -54,13 +57,16 @@ public class TaskManageRunner
 				case 1: //show task ALL (admin, user)
 					TodoTaskManage.toprintTaskALL(taskList);
 					break;
-				case 2: //add main task (admin)
+				case 2:	//do the task (admin, user)
+					TodoTaskManage.todoTask(taskList, logs, sc);
+					break;	//updated!!
+				case 3: //add main task (admin)
 					TodoTaskManage.toaddMainTask(taskList, cursor, sc);
 					break;
-				case 3: //add subtask (admin, user)
+				case 4: //add subtask (admin, user)
 					TodoTaskManage.toaddSubTask(taskList, sc);
 					break;
-				case 4: //add member to subtask (admin, user) - later
+				case 5: //add member to subtask (admin, user) - later
 				    TodoTaskManage.toassignMembertoTask(taskList, userList, cursor, sc);
 				    break;
 				default: //input error, retry an entry. 
