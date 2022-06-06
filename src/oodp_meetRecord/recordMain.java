@@ -10,7 +10,7 @@ public class recordMain {
 		recordList l = new recordList();
 		boolean isList = false;
 		boolean quit = false;
-		Todorecord.loadList(l, "todolist.txt");
+		Todorecord.loadList(l, "record.txt");
 		Todorecord.displaymenu();
 		
 		do {
@@ -58,30 +58,21 @@ public class recordMain {
                 Todorecord.listCate(l);
 					break;
 	
-				case "ls_name_asc":
-					l.sortByName();
-					isList = true;
-					break;
-	
-				case "ls_name_desc":
-					l.sortByName();
-					l.reverseList();
+				case "ls_name":
+					l.setSortStrategy(new NameSortStratagy());
+					l.sort();
 					isList = true;
 					break;
 					
 				case "ls_date":
-					l.sortByDate();
+					l.setSortStrategy(new DateSortStratagy());
+					l.sort();
 					isList = true;
 					break;
 					
-				case "ls_date_desc":
-					l.sortByDate();
-					l.reverseList();
-					isList = true;
-					break;
 	
 				case "exit":
-                	Todorecord.saveList(l, "todolist.txt");
+                	Todorecord.saveList(l, "record.txt");
 					quit = true;
 					break;
 					

@@ -4,6 +4,7 @@ import java.util.*;
 public class recordList 
 {
 	private List<recordDAO> list;
+	private SortStratagy sortstratagy;
 
 	public recordList() {
 		this.list = new ArrayList<recordDAO>();
@@ -65,4 +66,11 @@ public class recordList
 		return list.size();
 	}
 
+	public void setSortStrategy(SortStratagy sortstrategy) {
+		this.sortstratagy = sortstrategy;
+	}
+
+	public void sort() {
+		sortstratagy.sort(list);
+	}
 }
