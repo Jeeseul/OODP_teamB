@@ -1,27 +1,27 @@
 package oodp_user;
 
 import java.util.ArrayList;
-import oodp_task.*;
+import oodp_task.SubtaskDAO;
 
 public class TeamDAO extends UserDAO implements NoticeObserver {
     private String teamName;
-    // º¹¼ö °³ÀÇ UserDAO¸¦ °¡¸®Å´
+    // ë³µìˆ˜ ê°œì˜ UserDAOë¥¼ ê°€ë¦¬í‚´
     private static ArrayList<UserDAO> UserList = new ArrayList<UserDAO>();
 
     public TeamDAO() {
-    	this.setTeamName("no named team");
+        this.setTeamName("no named team");
     }
     public TeamDAO(String name) {
-    	this.setTeamName(name);
+        this.setTeamName(name);
     }
     
     //team name
     public String getTeamName() {
-		return teamName;
-	}
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
+        return teamName;
+    }
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
     
     // override methods, list all
     public String getName(){
@@ -59,12 +59,20 @@ public class TeamDAO extends UserDAO implements NoticeObserver {
         res += "\n";
         return res;
     }
-    public ArrayList<UserDAO> getList(){
-        return UserList;
+
+    // public String getAttandance(){
+    //     String res = "";
+    //     for( UserDAO user : UserList)
+    //         res += user.getAttandance().toString() + "\t";
+    //     res += "\n";
+    //     return res;
+    // }
+
+    public TagState getAttandance(){
+        return null;
     }
     
-    
-	//toString
+    //toString
     public String toString(){
         String res = "";
         res += getName();
@@ -72,54 +80,77 @@ public class TeamDAO extends UserDAO implements NoticeObserver {
         res += getPassword();
         res += getType();
         res += getLogincheck();
+        res += getAttandance();
         return res;
     }
 
-    
-    // UserÀ» UserList¿¡ Ãß°¡
+    // Userì„ UserListì— ì¶”ê°€
     public void addUser(UserDAO user){
         UserList.add(user);
     }
-    // UserÀ» ¼öÁ¤
+    // Userì„ ìˆ˜ì •
     public void updateUser(UserDAO user, UserDAO updated){
         int index = UserList.indexOf(user);
         UserList.remove(index);
         UserList.add(updated);
     }
-    // UserÀ» UserList¿¡¼­ Á¦°Å
+    // Userì„ UserListì—ì„œ ì œê±°
     public void deleteUser(UserDAO user){
         UserList.remove(user);
     }
-    // Áßº¹ Ã¼Å©
+
+    public int indexOf(UserDAO user){
+        return UserList.indexOf(user);
+    }
+    public int size(){
+        return UserList.size();
+    }
     public Boolean usDuplicate(String id){
         for(UserDAO user : UserList){
             if (id.equals(user.getID()) ) return true;
         }
         return false;
     }
-    //°øÁö ¾÷µ¥ÀÌÆ®
-    @Override
-    public void updateNotification(String updateText) {
-        System.out.println("º¯°æµÈ °øÁö È®ÀÎÇÒ °Í!\n" + updateText);
-        
+    public ArrayList<UserDAO> getList(){
+        return UserList;
     }
-    
-    
-    //referencing
-    public int indexOf(UserDAO user){
-        return UserList.indexOf(user);
-    }
-    @Override
-    public int size(){
-        return UserList.size();
-    }
-    
-    
-    /* Unused over-rid methods */
     public int login(){
         return 0;
     }
     public int logout(){
         return 0;
     }
+    public void setType(int type){}
+    
+    @Override
+    public void updateNotification(String updateText) {
+        System.out.println("ë³€ê²½ëœ ê³µì§€ í™•ì¸í•  ê²ƒ!\n" + updateText);
+        
+    }
+    
+    @Override
+    public int indexOf(SubtaskDAO task) {
+        return 0;
+    }
+    @Override
+    public ArrayList<SubtaskDAO> getTasks() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public int addTask(SubtaskDAO task) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    @Override
+    public int updateTask(SubtaskDAO task, SubtaskDAO updated) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    @Override
+    public int deleteTask(SubtaskDAO task) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    
 }

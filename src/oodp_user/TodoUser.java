@@ -19,12 +19,12 @@ public class TodoUser {
 
     //changed
     public static void toprintMenu(UserDAO user) {
-    	if(user.getType().equals("0"))
-    		System.out.println("\n*** login succeed! Welcome, [Admin] " 
-    				+ user.getName() + " ***");
-    	else 
-    		System.out.println("\n*** login succeed! Welcome, [User] " 
-    				+ user.getName() + " ***" );
+        if(user.getType().equals("0"))
+            System.out.println("\n*** login succeed! Welcome, [Admin] " 
+                    + user.getName() + " ***");
+        else 
+            System.out.println("\n*** login succeed! Welcome, [User] " 
+                    + user.getName() + " ***" );
         System.out.println("to logout press 1");
         // 다른 메뉴 추가
         System.out.println("to continue, press 2");
@@ -35,6 +35,8 @@ public class TodoUser {
         System.out.println("to notice 6");
         System.out.println("to reservation 7");
         System.out.println("to task 8");
+        System.out.println("to tagging(attand) 9");
+        System.out.println("to tagging(absent) 10");
         System.out.println("to exit, press 0\n");
     }
 
@@ -105,43 +107,43 @@ public class TodoUser {
     }
 
     public static void saveList(TeamDAO userList, String filename) {
-		//filewriter�
-		try {
-			Writer w = new FileWriter(filename);
-			
-			for (UserDAO item : userList.getList()) {
+        //filewriter�
+        try {
+            Writer w = new FileWriter(filename);
+            
+            for (UserDAO item : userList.getList()) {
                 if(item.getType()=="1"){
                     NormalUser i = new NormalUser(item.getName(), item.getID(), item.getPassword(), 1);
                     w.write(i.toSaveString());
                 }
-				else{
+                else{
                     AdminUser i = new AdminUser(item.getName(), item.getID(), item.getPassword(), 0);
                     w.write(i.toSaveString());
                 }
-			}
-			w.close();
-			
-			System.out.println("sucess save list");
-		} catch (FileNotFoundException e) {
-			System.out.println("file no exist\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            }
+            w.close();
+            
+            System.out.println("sucess save list");
+        } catch (FileNotFoundException e) {
+            System.out.println("file no exist\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void loadList(TeamDAO userList, String filename) {
         //bufferedreader, filereader, string tokenize
-		try {
-			BufferedReader  br = new BufferedReader(new FileReader(filename));
-			String oneline;
-			while((oneline = br.readLine()) != null) {
-				// System.out.print((char) oneline);
-				StringTokenizer st = new StringTokenizer(oneline, "##");
-				String name = st.nextToken();
-				String id = st.nextToken();
-				String password = st.nextToken();
-				String type = st.nextToken();
-				if(type.equals("1")) {
+        try {
+            BufferedReader  br = new BufferedReader(new FileReader(filename));
+            String oneline;
+            while((oneline = br.readLine()) != null) {
+                // System.out.print((char) oneline);
+                StringTokenizer st = new StringTokenizer(oneline, "##");
+                String name = st.nextToken();
+                String id = st.nextToken();
+                String password = st.nextToken();
+                String type = st.nextToken();
+                if(type.equals("1")) {
                     NormalUser user = new NormalUser(name, id, password, 1);
                     userList.addUser(user);
                 }
@@ -149,13 +151,23 @@ public class TodoUser {
                     AdminUser user = new AdminUser(name, id, password, 0);
                     userList.addUser(user);
                 }
-			}
-			System.out.println("\n sucess loading data");
-			br.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("file no exist\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+            }
+            System.out.println("\n sucess loading data");
+            br.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("file no exist\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void toAttandUser(UserDAO curuser, Scanner sc) {
+        System.out.println("to attand user");
+        curuser.on_attand_pushed();
+    }
+
+    public static void toAbsentUser(UserDAO curuser, Scanner sc) {
+        System.out.println("to absent user");
+        curuser.on_absent_pushed();
     }
 }

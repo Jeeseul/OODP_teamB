@@ -62,6 +62,11 @@ public class Main{
                 case 7 : MeetingRoomRunner.main(args);
                          break;
                 case 8 : TaskManageRunner.run(UserList, curuser);
+                          break;
+                case 9 : TodoUser.toAttandUser(curuser, sc);
+                          break;
+                case 10 : TodoUser.toAbsentUser(curuser, sc);
+                            break;
                 default : System.out.println("\nwrong answer.\n");
                           break;
             }
