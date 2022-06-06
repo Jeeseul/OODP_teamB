@@ -8,7 +8,7 @@ public class NoticeMemento {
     private String restoreOfTeamName;
 
 
-    NoticeMemento(TreeMap<String, Notice> state, String teamName) {
+    public NoticeMemento(TreeMap<String, Notice> state, String teamName) {
     	this.restoreOfTeams = state;
         this.restoreOfTeamName = teamName;
     }
